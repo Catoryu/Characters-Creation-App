@@ -7,14 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Logs;//LogWriter by Catoryu
+using Imports;//FileImporter by Catoryu
 
-namespace Characters_Creation_App
+namespace GuardianOfTime
 {
     public partial class MainForm : Form
     {
+        //LogWriter
+        private log LW = new log();
+
+        /// <summary>
+        /// Initialize MainForm.
+        /// </summary>
         public MainForm()
         {
-            InitializeComponent();
+            try
+            {
+                LW.Debug("Initializing MainForm.");
+                InitializeComponent();
+            }
+            catch(Exception ex)
+            {
+                LW.Error(ex);
+            }
         }
     }
 }

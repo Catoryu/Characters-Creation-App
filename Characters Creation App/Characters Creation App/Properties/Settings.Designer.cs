@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Characters_Creation_App.Properties
+namespace GuardianOfTime.Properties
 {
 
 
