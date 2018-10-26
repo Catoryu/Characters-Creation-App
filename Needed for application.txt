@@ -1,0 +1,14 @@
+Nom de famille
+Prénom
+Taille cheveux + Couleur
+Couleur yeux
+Race
+Taille(Hauteur)
+Date de naissance (dont l'année avec paramètres)
+Choses aimées
+Choses pas aimées
+Element
+Pouvoir personnel
+"Activité
+Backstory"
+Armes
