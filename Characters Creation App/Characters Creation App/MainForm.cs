@@ -25,6 +25,10 @@ namespace GuardianOfTime
         private List<Weapon> Weapons = new List<Weapon>();
         private List<Race> Races = new List<Race>();
         private List<LastName> NdF = new List<LastName>();
+        private List<string> EC = new List<string>();
+        private List<Hair> HairList = new List<Hair>();
+        private List<Thing> Things = new List<Thing>();
+        private List<Power> Powers = new List<Power>();
         private List<Character> CharaList = new List<Character>();
 
         /// <summary>
@@ -37,7 +41,7 @@ namespace GuardianOfTime
             {
                 LW.Debug("Initializing MainForm.");
                 InitializeComponent();
-                LW.Debug("Initializing World items.");
+                LW.Debug("Initializing World Lists.");
                 #region Timelines
                 TLs.Add(new Timeline("Originelle", new DateTime(15840, 1, 1)));//2512o, 16100MK
                 TLs.Add(new Timeline("MK-0/MK-2", new DateTime(15378, 1, 1)));//2050o, 15638MK
@@ -186,7 +190,131 @@ namespace GuardianOfTime
                 Races.Add(new Race("Humain"));
                 Races.Add(new Race("Démon draconnique"));
                 #endregion Races
-
+                #region Eyes
+                EC.Add("Bleu");
+                EC.Add("Brun");
+                EC.Add("Gris");
+                EC.Add("Vert");
+                EC.Add("Rouge");
+                EC.Add("Doré");
+                EC.Add("Noir");
+                EC.Add("Violet");
+                #endregion Eyes
+                #region Hair
+                HairList.Add(new Hair("Noir", "Chauve"));
+                HairList.Add(new Hair("Noir", "Court"));
+                HairList.Add(new Hair("Noir", "Mi-court"));
+                HairList.Add(new Hair("Noir", "Mi-long"));
+                HairList.Add(new Hair("Noir", "Long"));
+                HairList.Add(new Hair("Noir", "Spécial"));
+                HairList.Add(new Hair("Gris", "Chauve"));
+                HairList.Add(new Hair("Gris", "Court"));
+                HairList.Add(new Hair("Gris", "Mi-court"));
+                HairList.Add(new Hair("Gris", "Mi-long"));
+                HairList.Add(new Hair("Gris", "Long"));
+                HairList.Add(new Hair("Gris", "Spécial"));
+                HairList.Add(new Hair("Blanc", "Chauve"));
+                HairList.Add(new Hair("Blanc", "Court"));
+                HairList.Add(new Hair("Blanc", "Mi-court"));
+                HairList.Add(new Hair("Blanc", "Mi-long"));
+                HairList.Add(new Hair("Blanc", "Long"));
+                HairList.Add(new Hair("Blanc", "Spécial"));
+                HairList.Add(new Hair("Brun", "Chauve"));
+                HairList.Add(new Hair("Brun", "Court"));
+                HairList.Add(new Hair("Brun", "Mi-court"));
+                HairList.Add(new Hair("Brun", "Mi-long"));
+                HairList.Add(new Hair("Brun", "Long"));
+                HairList.Add(new Hair("Brun", "Spécial"));
+                HairList.Add(new Hair("Blond", "Chauve"));
+                HairList.Add(new Hair("Blond", "Court"));
+                HairList.Add(new Hair("Blond", "Mi-court"));
+                HairList.Add(new Hair("Blond", "Mi-long"));
+                HairList.Add(new Hair("Blond", "Long"));
+                HairList.Add(new Hair("Blond", "Spécial"));
+                HairList.Add(new Hair("Roux", "Chauve"));
+                HairList.Add(new Hair("Roux", "Court"));
+                HairList.Add(new Hair("Roux", "Mi-court"));
+                HairList.Add(new Hair("Roux", "Mi-long"));
+                HairList.Add(new Hair("Roux", "Long"));
+                HairList.Add(new Hair("Roux", "Spécial"));
+                HairList.Add(new Hair("Spéciale", "Chauve"));
+                HairList.Add(new Hair("Spéciale", "Court"));
+                HairList.Add(new Hair("Spéciale", "Mi-court"));
+                HairList.Add(new Hair("Spéciale", "Mi-long"));
+                HairList.Add(new Hair("Spéciale", "Long"));
+                HairList.Add(new Hair("Spéciale", "Spécial"));
+                #endregion Hair
+                #region Things
+                Things.Add(new Thing("Nourriture"));
+                Things.Add(new Thing("Savoir"));
+                Things.Add(new Thing("Entraînement"));
+                Things.Add(new Thing("Volaille"));
+                Things.Add(new Thing("Fruits"));
+                Things.Add(new Thing("Les gens"));
+                Things.Add(new Thing("Humains"));
+                Things.Add(new Thing("Hommes-bêtes"));
+                Things.Add(new Thing("Vampire"));
+                Things.Add(new Thing("Nature"));
+                Things.Add(new Thing("Aider les gens dans le besoin"));
+                Things.Add(new Thing("Violence"));
+                Things.Add(new Thing("Combat"));
+                Things.Add(new Thing("Faiblesse"));
+                Things.Add(new Thing("Force"));
+                Things.Add(new Thing("Alcool"));
+                Things.Add(new Thing("Légumes"));
+                Things.Add(new Thing("Viande"));
+                Things.Add(new Thing("Poisson"));
+                Things.Add(new Thing("Sang"));
+                Things.Add(new Thing("Complications"));
+                Things.Add(new Thing("Féculants"));
+                Things.Add(new Thing("Perseverance"));
+                Things.Add(new Thing("Superiorité"));
+                Things.Add(new Thing("Froid"));
+                Things.Add(new Thing("Chaleur"));
+                Things.Add(new Thing("Charité"));
+                Things.Add(new Thing("Paresse"));
+                Things.Add(new Thing("Espoir"));
+                Things.Add(new Thing("Désespoir"));
+                Things.Add(new Thing("Solitude"));
+                Things.Add(new Thing("Calme"));
+                Things.Add(new Thing("Bruit"));
+                Things.Add(new Thing("Abandon"));
+                Things.Add(new Thing("Victoire"));
+                Things.Add(new Thing("Défaite"));
+                Things.Add(new Thing("Vitesse"));
+                Things.Add(new Thing("Ce monde"));
+                Things.Add(new Thing("Soi-même"));
+                Things.Add(new Thing("Amitié"));
+                Things.Add(new Thing("Partage"));
+                Things.Add(new Thing("Discuter"));
+                Things.Add(new Thing("Ignorance"));
+                #endregion Things
+                #region Powers
+                Powers.Add(new Power("Propagation d'esprit"));
+                Powers.Add(new Power("Plantes"));
+                Powers.Add(new Power("Apprentissage d'armes accéléré"));
+                Powers.Add(new Power("Résurrection temporaire"));
+                Powers.Add(new Power("Contrôle des vecteurs"));
+                Powers.Add(new Power("Manipulation de décisions"));
+                Powers.Add(new Power("Zone de ralentissement"));
+                Powers.Add(new Power("Paralysie des membres"));
+                Powers.Add(new Power("Déplacement accéléré"));
+                Powers.Add(new Power("Feu divin"));
+                Powers.Add(new Power("Glace divine"));
+                Powers.Add(new Power("Eau divine"));
+                Powers.Add(new Power("Terre divine"));
+                Powers.Add(new Power("Vent divin"));
+                Powers.Add(new Power("Foudre divine"));
+                Powers.Add(new Power("Lumière divine"));
+                Powers.Add(new Power("Ténèbres divins"));
+                Powers.Add(new Power("Clonage"));
+                Powers.Add(new Power("Rage"));
+                Powers.Add(new Power("Déviation"));
+                Powers.Add(new Power("Transmission nerveuse"));
+                Powers.Add(new Power("Contrôle du sang"));
+                Powers.Add(new Power("Armure rocheuse"));
+                Powers.Add(new Power("Séparation de l'âme et du corps"));
+                #endregion Powers
             }
             catch (Exception ex)
             {
