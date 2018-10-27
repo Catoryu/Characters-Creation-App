@@ -15,6 +15,7 @@ namespace GuardianOfTime
 
         public List<string> Elements;
 
+        //Creates a simple World
         public World()
         {
             Elements.Add("Feu");
@@ -31,12 +32,14 @@ namespace GuardianOfTime
     struct LastName
     {
         public string Name;
-        public string Race;
+        public Race Race;
+        public List<string> FirstNames;
 
-        public LastName(string Name, string Race)
+        public LastName(string Name, Race Race)
         {
             this.Name = Name;
             this.Race = Race;
+            this.FirstNames = new List<string>();
         }
     }
 
@@ -99,31 +102,26 @@ namespace GuardianOfTime
     struct Activity
     {
         public string Title;
-        public string Race;
-        
-        public Activity(string Title)
-        {
-            this.Title = Title;
-            this.Race = null;
-        }
+        public Timeline Timeline;
 
-        public Activity(string Title, string Race)
+        public Activity(string Title, Timeline Timeline)
         {
             this.Title = Title;
-            this.Race = Race;
+            this.Timeline = Timeline;
         }
     }
 
     struct BackStory
     {
-        string Title;
-        string Story;
+        public string Title;
+        public string Story;
+        public Timeline Timeline;
 
-        public BackStory(string Title, string Story)
+        public BackStory(string Title, string Story, Timeline Timeline)
         {
             this.Title = Title;
             this.Story = Story;
-
+            this.Timeline = Timeline;
         }
     }
 

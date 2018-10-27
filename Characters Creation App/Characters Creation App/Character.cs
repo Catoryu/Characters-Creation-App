@@ -9,31 +9,29 @@ namespace GuardianOfTime
     class Character
     {
         #region attributes
-        private string lastName;
-        public string LastName { get { return lastName; } set { lastName = value; } }
+        private LastName lastName;
+        public LastName LastName { get { return lastName; } set { lastName = value; } }
         private string firstName;
         public string FirstName { get { return firstName; } set { firstName = value; } }
-        private string hairColor;
-        public string HairColor { get { return hairColor; } set { hairColor = value; } }
-        private string hairLength;
-        public string HairLength { get { return hairLength; } set { hairLength = value; } }
+        private Hair hair;
+        public Hair Hair { get { return hair; } set { hair = value; } }
         private string eyesColor;
         public string EyesColor { get { return eyesColor; } set { eyesColor = value; } }
-        private string race;
-        public string Race { get { return race; } set { race = value; } }
+        private Race race;
+        public Race Race { get { return race; } set { race = value; } }
         private int height;
         public int Height { get { return height; } set { height = value; } }
         private DateTime birth;
         public DateTime Birth { get { return Birth; } set { birth = value; } }
-        private string timeLine;
-        public string TimeLine { get { return timeLine; } set { timeLine = value; } }
-        public List<string> Likes;
-        public List<string> Unlikes;
+        private Timeline timeLine;
+        public Timeline TimeLine { get { return timeLine; } set { timeLine = value; } }
+        public List<Thing> Likes;
+        public List<Thing> Unlikes;
         public List<string> Elements;
-        public List<string> Powers;
-        public List<string> Activities;
-        public List<string> Backstory;
-        public List<string> Weapons;
+        public List<Power> Powers;
+        public List<Activity> Activities;
+        public List<BackStory> Backstory;
+        public List<Weapon> Weapons;
         #endregion attributes
 
         #region special attributes
@@ -49,13 +47,12 @@ namespace GuardianOfTime
         }
 
         //Creates a character without all the lists
-        public Character(string LastName, string FirstName, string HairLength, string HairColor, string EyesColor,
-            string Race, int Height, DateTime DateOfBirth, string TimeLine)
+        public Character(LastName LastName, string FirstName, Hair Hair, string EyesColor,Race Race, int Height,
+            DateTime DateOfBirth, Timeline TimeLine)
         {
             this.LastName = LastName;
             this.FirstName = FirstName;
-            this.HairLength = HairLength;
-            this.HairColor = HairColor;
+            this.Hair = Hair;
             this.EyesColor = EyesColor;
             this.Race = Race;
             this.Height = Height;
@@ -65,14 +62,13 @@ namespace GuardianOfTime
         }
 
         //Creates a complete character.
-        public Character(string LastName, string FirstName, string HairLength, string HairColor, string EyesColor,
-            string Race, int Height, DateTime DateOfBirth, List<string> Likes, List<string> Unlikes, List<string> Elements,
-            List<string> Powers, List<string> Activities, List<string> Backstory, List<string> Weapons)
+        public Character(LastName LastName, string FirstName, Hair Hair, string EyesColor, Race Race, int Height,
+            DateTime DateOfBirth, Timeline Timeline, List<Thing> Likes, List<Thing> Unlikes, List<string> Elements,
+            List<Power> Powers, List<Activity> Activities, List<BackStory> Backstory, List<Weapon> Weapons)
         {
             this.LastName = LastName;
             this.FirstName = FirstName;
-            this.HairLength = HairLength;
-            this.HairColor = HairColor;
+            this.Hair = Hair;
             this.EyesColor = EyesColor;
             this.Race = Race;
             this.Height = Height;
