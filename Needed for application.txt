@@ -1,19 +1,5 @@
-A créer :
--RaceList(update indépendamment des personnages.)
--NdFList(update à chaque nouveau NdF. -> Une liste par espèce.)
--HairLengthList(update indépendamment des personnages.)
--HairColorList(update indépendamment des personnages.)
--minHeight = 100
--maxHeight = 221
--minGodHeight = 240
--maxGodHeight = 260
--LinesList(update indépendamment des personnages.)
--ThingsList(update indépendamment des personnages. -> Pour likes and unlikes.)
--ElementsList(fixe -> 8 éléments.)
--PowersList(update indépendamment des personnages.)
--TitlesList(update indépendamment des personnages.)
--BackStoryList(update indépendamment des personnages.)
--WeaponList(update indépendamment des personnages.)
+-Ajouter le NdF à la liste à chaque ajout de personnage (1 liste par espèce)
+-Spécifier les tailles minimales & maximales des persos (Normaux & Dieux)
 
 Race :
 -Doit être défini avant NdF & Prénom 

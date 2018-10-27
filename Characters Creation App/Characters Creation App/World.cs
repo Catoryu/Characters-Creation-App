@@ -29,6 +29,7 @@ namespace GuardianOfTime
         }
     }
 
+    [Serializable]
     struct LastName
     {
         public string Name;
@@ -43,6 +44,7 @@ namespace GuardianOfTime
         }
     }
 
+    [Serializable]
     struct Race
     {
         public string Name;
@@ -53,6 +55,7 @@ namespace GuardianOfTime
         }
     }
 
+    [Serializable]
     struct Hair
     {
         public string Color;
@@ -65,6 +68,7 @@ namespace GuardianOfTime
         }
     }
 
+    [Serializable]
     struct Timeline
     {
         public string Name;
@@ -78,6 +82,7 @@ namespace GuardianOfTime
         }
     }
 
+    [Serializable]
     struct Thing
     {
         public string Name;
@@ -88,6 +93,7 @@ namespace GuardianOfTime
         }
     }
 
+    [Serializable]
     struct Power
     {
         public string Name;
@@ -99,6 +105,7 @@ namespace GuardianOfTime
         }
     }
 
+    [Serializable]
     struct Activity
     {
         public string Title;
@@ -111,6 +118,7 @@ namespace GuardianOfTime
         }
     }
 
+    [Serializable]
     struct BackStory
     {
         public string Title;
@@ -125,6 +133,7 @@ namespace GuardianOfTime
         }
     }
 
+    [Serializable]
     struct Weapon
     {
         public string Name;

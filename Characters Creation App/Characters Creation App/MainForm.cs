@@ -31,6 +31,9 @@ namespace GuardianOfTime
         private List<Power> Powers = new List<Power>();
         private List<Character> CharaList = new List<Character>();
 
+        //Random
+        private Random Rnd = new Random();
+
         /// <summary>
         /// Initialize MainForm.
         /// </summary>
