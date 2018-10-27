@@ -1,14 +1,74 @@
-Nom de famille
-Prénom
-Taille cheveux + Couleur
-Couleur yeux
-Race
-Taille(Hauteur)
-Date de naissance (dont l'année avec paramètres)
-Choses aimées
-Choses pas aimées
-Element
-Pouvoir personnel
-"Activité
-Backstory"
-Armes
+A créer :
+-RaceList(update indépendamment des personnages.)
+-NdFList(update à chaque nouveau NdF. -> Une liste par espèce.)
+-HairLengthList(update indépendamment des personnages.)
+-HairColorList(update indépendamment des personnages.)
+-minHeight = 100
+-maxHeight = 221
+-minGodHeight = 240
+-maxGodHeight = 260
+-LinesList(update indépendamment des personnages.)
+-ThingsList(update indépendamment des personnages. -> Pour likes and unlikes.)
+-ElementsList(fixe -> 8 éléments.)
+-PowersList(update indépendamment des personnages.)
+-TitlesList(update indépendamment des personnages.)
+-BackStoryList(update indépendamment des personnages.)
+-WeaponList(update indépendamment des personnages.)
+
+Race :
+-Doit être défini avant NdF & Prénom 
+-> Un dragon n'a pas de NdF et son prénom doit être sélectionné dans une liste.
+-> Un Dieu a des parmètres spécifiques.
+Personnage alternatif :
+-Un personnage alternatif est une divérgence d'un personnage (D'une autre ligne par exemple).
+-> Dans le cas d'un personnage alternatif, certains paramètres doivent être identiques.
+Nom de famille :
+-Doit être entré par l'utilisateur.
+-Peut-être sélectionné par l'utilisateur dans la liste de NdF existants.
+Prénom :
+-Doit être entré par l'utilisateur.
+-Un personnage ne peut pas avoir les mêmes NdF + Prénom identiques.
+Longeur de cheveux :
+-Random ou à choix dans une liste.
+Couleur de cheveux :
+-Random ou à choix dans une liste.
+Couleur des yeux :
+-Random ou à choix dans une liste.
+Hauteur :
+-Random ou à choix entre 100 & 221 cm.
+-Un Dieu mesure obligatoirement entre 240 & 260 cm.
+Date de naissance :
+-Peut être random mais entre 2 années sélectionnées.
+-Nombres négatifs possibles.
+-Une ligne temporelle doit être spécifiée.
+Aime :
+-Random ou à choix dans une liste.
+-Entre 1 et 5 choix.
+N'aime pas :
+-Random ou à choix dans une liste
+-Entre 1 et 5 choix.
+Elements :
+-Random ou à choix parmi les 8 éléments.
+-Peut avoir un 2ème élément parmi les 7 restants si demandé par l'utilisateur.
+->Dans le cas d'un random, 1/500 d'avoir un deuxième élément.
+Pouvoirs :
+-Random ou à choix parmi une liste.
+-Aucuns personnages ne peuvent avoir le même pouvoir, à moins de configurer le personnage en tant que personnage alternatif.
+Activités / Titres :
+-Random ou à choix parmi une liste.
+-"Aucun titre" possible.
+-Les activités/titres ont des pré-requis. (Eléments, âge, race, etc...)
+-"Plusieurs titres" possible.
+-Les titres sont uniques.
+Backstory :
+-Peut être entré manuellement.
+-Random ou à choix dans une liste.
+-"Plusieurs Backstories" possible.
+Armes :
+-Random ou à choix dans une liste.
+-"Aucune arme" possible.
+-"Plusieurs armes" possible.
+-"Armes légendaires/élémentales" ont des pré-requis.
+-"Armes légendaires/élémentales" ne peuvent pas être obtenues par un random.
+
+Un personnage dont + de 12(75%) paramètres sont défini par le "random" doit avoir le créateur suivant : "Character App par %username%."

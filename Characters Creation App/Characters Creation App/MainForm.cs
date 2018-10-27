@@ -22,6 +22,7 @@ namespace GuardianOfTime
         /// </summary>
         public MainForm()
         {
+            LW.Create(@"C:\logCS");
             try
             {
                 LW.Debug("Initializing MainForm.");
