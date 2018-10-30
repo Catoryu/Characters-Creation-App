@@ -21,7 +21,6 @@ namespace GuardianOfTime
         private World W = new World();
         private List<Timeline> TLs = new List<Timeline>();
         private List<Activity> Acts = new List<Activity>();
-        private List<BackStory> BS = new List<BackStory>();
         private List<Weapon> Weapons = new List<Weapon>();
         private List<Race> Races = new List<Race>();
         private List<LastName> NdF = new List<LastName>();
@@ -146,11 +145,6 @@ namespace GuardianOfTime
                 Acts.Add(new Activity("Light Master", TLs[2]));
                 Acts.Add(new Activity("Darkness Master", TLs[2]));
                 #endregion Activities/Titles
-                #region Backstories
-                BS.Add(new BackStory("Pas de Parents", "Ses parents sont morts quand il était plus jeune.", TLs[1]));
-                BS.Add(new BackStory("Sauvage", "Il a vécu dans la nature.", TLs[1]));
-                BS.Add(new BackStory("Sauvage", "Il a vécu dans la nature.", TLs[2]));
-                #endregion Backstories
                 #region Weapons
                 //Simple Weapons
                 Weapons.Add(new Weapon("Gun"));
