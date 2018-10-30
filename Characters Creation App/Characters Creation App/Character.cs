@@ -33,6 +33,7 @@ namespace GuardianOfTime
         public List<Activity> Activities;
         public List<BackStory> Backstory;
         public List<Weapon> Weapons;
+        public Character Alternative;
         #endregion attributes
 
         #region special attributes
@@ -65,7 +66,8 @@ namespace GuardianOfTime
         //Creates a complete character.
         public Character(LastName LastName, string FirstName, Hair Hair, string EyesColor, Race Race, int Height,
             DateTime DateOfBirth, Timeline Timeline, List<Thing> Likes, List<Thing> Unlikes, List<string> Elements,
-            List<Power> Powers, List<Activity> Activities, List<BackStory> Backstory, List<Weapon> Weapons)
+            List<Power> Powers, List<Activity> Activities, List<BackStory> Backstory, List<Weapon> Weapons,
+            Character BaseCharacter)
         {
             this.LastName = LastName;
             this.FirstName = FirstName;
@@ -82,6 +84,7 @@ namespace GuardianOfTime
             this.Activities = Activities;
             this.Backstory = Backstory;
             this.Weapons = Weapons;
+            this.Alternative = BaseCharacter;
             this.Updated = true;
         }
 

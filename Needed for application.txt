@@ -1,24 +1,24 @@
 -Ajouter le NdF à la liste à chaque ajout de personnage (1 liste par espèce)
 -Spécifier les tailles minimales & maximales des persos (Normaux & Dieux)
 
-Race :
+#Race :
 -Doit être défini avant NdF & Prénom 
 -> Un dragon n'a pas de NdF et son prénom doit être sélectionné dans une liste.
 -> Un Dieu a des parmètres spécifiques.
-Personnage alternatif :
+#Personnage alternatif :
 -Un personnage alternatif est une divérgence d'un personnage (D'une autre ligne par exemple).
 -> Dans le cas d'un personnage alternatif, certains paramètres doivent être identiques.
-Nom de famille :
+#Nom de famille :
 -Doit être entré par l'utilisateur.
 -Peut-être sélectionné par l'utilisateur dans la liste de NdF existants.
-Prénom :
+#Prénom :
 -Doit être entré par l'utilisateur.
 -Un personnage ne peut pas avoir les mêmes NdF + Prénom identiques.
-Longeur de cheveux :
+#Longeur de cheveux :
 -Random ou à choix dans une liste.
-Couleur de cheveux :
+#Couleur de cheveux :
 -Random ou à choix dans une liste.
-Couleur des yeux :
+#Couleur des yeux :
 -Random ou à choix dans une liste.
 Hauteur :
 -Random ou à choix entre 100 & 221 cm.
@@ -33,11 +33,11 @@ Aime :
 N'aime pas :
 -Random ou à choix dans une liste
 -Entre 1 et 5 choix.
-Elements :
+#Elements :
 -Random ou à choix parmi les 8 éléments.
 -Peut avoir un 2ème élément parmi les 7 restants si demandé par l'utilisateur.
 ->Dans le cas d'un random, 1/500 d'avoir un deuxième élément.
-Pouvoirs :
+#Pouvoirs :
 -Random ou à choix parmi une liste.
 -Aucuns personnages ne peuvent avoir le même pouvoir, à moins de configurer le personnage en tant que personnage alternatif.
 Activités / Titres :

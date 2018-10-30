@@ -46,9 +46,9 @@ namespace GuardianOfTime
                 InitializeComponent();
                 LW.Debug("Initializing World Lists.");
                 #region Timelines
-                TLs.Add(new Timeline("Originelle", new DateTime(15840, 1, 1)));//2512o, 16100MK
-                TLs.Add(new Timeline("MK-0/MK-2", new DateTime(15378, 1, 1)));//2050o, 15638MK
-                TLs.Add(new Timeline("MK-1", new DateTime(0, 1, 1)));//-13588o, 260MK
+                TLs.Add(new Timeline("Originelle", new DateTime(2512, 1, 1)));//2512o, 16100MK
+                TLs.Add(new Timeline("MK-0/MK-2", new DateTime(2050, 1, 1)));//2050o, 15638MK
+                TLs.Add(new Timeline("MK-1", new DateTime(9260, 1, 1)));//-13588o, 260MK
                 #endregion Timelines
                 #region Activities/Titles
                 //Originelle
@@ -291,13 +291,17 @@ namespace GuardianOfTime
                 Things.Add(new Thing("Partage"));
                 Things.Add(new Thing("Discuter"));
                 Things.Add(new Thing("Ignorance"));
+                Things.Add(new Thing("Société"));
+                Things.Add(new Thing("Guerre"));
+                Things.Add(new Thing("Paix"));
+                Things.Add(new Thing("Conflits"));
                 #endregion Things
                 #region Powers
-                Powers.Add(new Power("Propagation d'esprit"));
-                Powers.Add(new Power("Plantes"));
+                Powers.Add(new Power("Propagation mentale"));
+                Powers.Add(new Power("Contrôle des plantes"));
                 Powers.Add(new Power("Apprentissage d'armes accéléré"));
                 Powers.Add(new Power("Résurrection temporaire"));
-                Powers.Add(new Power("Contrôle des vecteurs"));
+                Powers.Add(new Power("Contrôle des vecteurs de force"));
                 Powers.Add(new Power("Manipulation de décisions"));
                 Powers.Add(new Power("Zone de ralentissement"));
                 Powers.Add(new Power("Paralysie des membres"));
@@ -317,6 +321,108 @@ namespace GuardianOfTime
                 Powers.Add(new Power("Contrôle du sang"));
                 Powers.Add(new Power("Armure rocheuse"));
                 Powers.Add(new Power("Séparation de l'âme et du corps"));
+                Powers.Add(new Power("Trou de ver"));
+                Powers.Add(new Power("Téléportation"));
+                Powers.Add(new Power("Contrôle mental"));
+                Powers.Add(new Power("Télépathie"));
+                Powers.Add(new Power("Zone d'accélération"));
+                Powers.Add(new Power("Vision externe"));
+                Powers.Add(new Power("Corps liquide"));
+                Powers.Add(new Power("Corps gazeux"));
+                Powers.Add(new Power("Garde imperturbable"));
+                Powers.Add(new Power("Endurance illimitée"));
+                Powers.Add(new Power("Métamorphose"));
+                Powers.Add(new Power("Echolocation"));
+                Powers.Add(new Power("Armure d'écailes"));
+                Powers.Add(new Power("Clairvoyance"));
+                Powers.Add(new Power("Echange d'esprit"));
+                Powers.Add(new Power("Substitution spatiale"));
+                Powers.Add(new Power("Augmentation de force"));
+                Powers.Add(new Power("Déplacement interdimensionnel"));
+                Powers.Add(new Power("Dimension personnelle"));
+                Powers.Add(new Power("Illusions"));
+                Powers.Add(new Power("Pulsions magnétiques"));
+                Powers.Add(new Power("Répulsion"));
+                Powers.Add(new Power("Attraction"));
+                Powers.Add(new Power("Manipulation de souvenirs"));
+                Powers.Add(new Power("Double-personnalité"));
+                Powers.Add(new Power("Invisibilité"));
+                Powers.Add(new Power("Manipulation de gravité"));
+                Powers.Add(new Power("Psychométrie"));
+                Powers.Add(new Power("Invocation d'esprits"));
+                Powers.Add(new Power("Invocation de démons"));
+                Powers.Add(new Power("Invocation de créatures"));
+                Powers.Add(new Power("Possession d'esprits"));
+                Powers.Add(new Power("Possession démoniaque"));
+                Powers.Add(new Power("Perception extrasensorielle"));
+                Powers.Add(new Power("Préconnaissance"));
+                Powers.Add(new Power("Télékinesie"));
+                Powers.Add(new Power("Rétrovision"));
+                Powers.Add(new Power("Hypnose"));
+                Powers.Add(new Power("Postvision"));
+                Powers.Add(new Power("Contrôle de poisons"));
+                Powers.Add(new Power("Manipulation de poid"));
+                Powers.Add(new Power("Pensées accélérées"));
+                Powers.Add(new Power("Connaissance de mensonges"));
+                Powers.Add(new Power("Immunité aux maladies"));
+                Powers.Add(new Power("Immunité à la fatigue"));
+                Powers.Add(new Power("Immunité à la faim"));
+                Powers.Add(new Power("Immunité à la soif"));
+                Powers.Add(new Power("Autosuffisance"));
+                Powers.Add(new Power("Corps spirituel"));
+                Powers.Add(new Power("Crochetage"));
+                Powers.Add(new Power("Odarat sur-développé"));
+                Powers.Add(new Power("Ouïe sur-développée"));
+                Powers.Add(new Power("Perception des températures"));
+                Powers.Add(new Power("Transfert de mana"));
+                Powers.Add(new Power("Immortalité"));
+                Powers.Add(new Power("Lévitation"));
+                Powers.Add(new Power("Détection d'énergie"));
+                Powers.Add(new Power("Vision rayon X"));
+                Powers.Add(new Power("Régéneration"));
+                Powers.Add(new Power("Armure psychique"));
+                Powers.Add(new Power("Soins"));
+                Powers.Add(new Power("Propagation de sommeil"));
+                Powers.Add(new Power("Propagation de peur"));
+                Powers.Add(new Power("Perception universelle"));
+                Powers.Add(new Power("Manipulation des probabilités"));
+                Powers.Add(new Power("Analyse accélérée"));
+                Powers.Add(new Power("Force émotionnelle"));
+                Powers.Add(new Power("Augmentation de vitesse"));
+                Powers.Add(new Power("Armure spirituelle"));
+                Powers.Add(new Power("Contrôle des poussières"));
+                Powers.Add(new Power("Armure crystallisée"));
+                Powers.Add(new Power("Contrôle du bois"));
+                Powers.Add(new Power("Contrôle des mineraux"));
+                Powers.Add(new Power("Duplication"));
+                Powers.Add(new Power("Absorption de dégats physiques"));
+                Powers.Add(new Power("Immunité aux dégats physiques"));
+                Powers.Add(new Power("Immunité à la douleur"));
+                Powers.Add(new Power("Contrôle des gaz"));
+                Powers.Add(new Power("Solidification"));
+                Powers.Add(new Power("Inversion des vecteurs de force"));
+                Powers.Add(new Power("Inversion de gravité"));
+                Powers.Add(new Power("Vue sur-développée"));
+                Powers.Add(new Power("Manipulation des sens"));
+                Powers.Add(new Power("Manipulation des corps physiques"));
+                Powers.Add(new Power("Suppression de souvenirs"));
+                Powers.Add(new Power("Modification de souvenirs"));
+                Powers.Add(new Power("Création de souvenirs"));
+                Powers.Add(new Power("Inversion de probabilités"));
+                Powers.Add(new Power("Attaque mentale"));
+                Powers.Add(new Power("Manipulation des formes"));
+                Powers.Add(new Power("Propagation de souvenirs"));
+                Powers.Add(new Power("Propagation de connaissances"));
+                Powers.Add(new Power("Perception de mana"));
+                Powers.Add(new Power("Immunité au feu"));
+                Powers.Add(new Power("Immunité à la glace"));
+                Powers.Add(new Power("Immunité à l'eau"));
+                Powers.Add(new Power("Immunité à la terre"));
+                Powers.Add(new Power("Immunité au vent"));
+                Powers.Add(new Power("Immunité à la foudre"));
+                Powers.Add(new Power("Immunité à la lumière"));
+                Powers.Add(new Power("Immunité aux ténèbres"));
+                Powers.Add(new Power("Inversion des éléments"));
                 #endregion Powers
             }
             catch (Exception ex)
