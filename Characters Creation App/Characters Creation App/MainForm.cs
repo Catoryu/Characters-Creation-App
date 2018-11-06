@@ -443,6 +443,7 @@ namespace GuardianOfTime
                 LW.Debug("Loading weapons.");
                 RefreshWeapons();
                 //Other
+                LW.Debug("Refreshing Dates.");
                 RefreshDatesLimit();
             }
             catch(Exception ex)
@@ -459,11 +460,13 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Timelines.");
                 TimelineBox.Items.Clear();
                 foreach (Timeline t in TLs)
                 {
                     TimelineBox.Items.Add(t.Name);
                 }
+                LW.Debug("Timelines : OK.");
             }
             catch(Exception ex)
             {
@@ -478,11 +481,13 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Races.");
                 RaceBox.Items.Clear();
                 foreach (Race r in Races)
                 {
                     RaceBox.Items.Add(r.Name);
                 }
+                LW.Debug("Races : OK.");
             }
             catch (Exception ex)
             {
@@ -497,6 +502,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Last Names.");
                 LNameBox.Items.Clear();
                 if (RaceBox.SelectedIndex == -1)
                 {
@@ -521,6 +527,7 @@ namespace GuardianOfTime
                         }
                     }
                 }
+                LW.Debug("Last Names : OK.");
             }
             catch (Exception ex)
             {
@@ -535,6 +542,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing First Names.");
                 FNameBox.Items.Clear();
                 if (RaceBox.SelectedItem.ToString() == Races[0].Name)
                 {
@@ -565,6 +573,7 @@ namespace GuardianOfTime
                     LNameBox.Enabled = true;
                     FNameBox.DropDownStyle = ComboBoxStyle.DropDown;
                 }
+                LW.Debug("First Names : OK.");
             }
             catch (Exception ex)
             {
@@ -579,8 +588,10 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Elements.");
                 RefreshElements1();
                 RefreshElements2();
+                LW.Debug("Elements : OK.");
             }
             catch(Exception ex)
             {
@@ -595,11 +606,13 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Element 1.");
                 ElementBox.Items.Clear();
                 foreach (string val in W.Elements)
                 {
                     ElementBox.Items.Add(val);
                 }
+                LW.Debug("Element 1 : OK.");
             }
             catch (Exception ex)
             {
@@ -614,6 +627,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Element 2.");
                 ElementBox2.Items.Clear();
                 if (ElementBox.SelectedIndex != -1)
                 {
@@ -625,6 +639,7 @@ namespace GuardianOfTime
                         }
                     }
                 }
+                LW.Debug("Element 2 : OK.");
             }
             catch (Exception ex)
             {
@@ -639,8 +654,10 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Powers.");
                 RefreshPowers1();
                 RefreshPowers2();
+                LW.Debug("Powers : OK.");
             }
             catch(Exception ex)
             {
@@ -655,6 +672,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Power 1.");
                 PowerBox.Items.Clear();
                 bool add;
                 foreach(Power value in Powers)
@@ -672,6 +690,7 @@ namespace GuardianOfTime
                         PowerBox.Items.Add(value.Name);
                     }
                 }
+                LW.Debug("Power 1 : OK.");
             }
             catch (Exception ex)
             {
@@ -686,6 +705,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Power 2.");
                 PowerBox2.Items.Clear();
                 bool add;
                 foreach (Power value in Powers)
@@ -704,6 +724,7 @@ namespace GuardianOfTime
                         PowerBox2.Items.Add(value.Name);
                     }
                 }
+                LW.Debug("Power 2 : OK.");
             }
             catch (Exception ex)
             {
@@ -718,7 +739,8 @@ namespace GuardianOfTime
         {
             try
             {
-                switch(BirthMonth.Value)
+                LW.Debug("Refreshing Date Limits.");
+                switch (BirthMonth.Value)
                 {
                     case 1:
                     case 3:
@@ -743,6 +765,7 @@ namespace GuardianOfTime
                         BirthDay.Maximum = 31;
                         break;
                 }
+                LW.Debug("Date Limits : OK.");
             }
             catch(Exception ex)
             {
@@ -757,7 +780,8 @@ namespace GuardianOfTime
         {
             try
             {
-                switch(RaceBox.SelectedItem.ToString())
+                LW.Debug("Refreshing Height Limits.");
+                switch (RaceBox.SelectedItem.ToString())
                 {
                     case "Dieu élémentaire":
                         HeightMin.Minimum = World.GodMinHeight;
@@ -776,6 +800,7 @@ namespace GuardianOfTime
                         HeightBox.Maximum = World.PeopleMaxHeight;
                         break;
                 }
+                LW.Debug("Height Limits : OK.");
             }
             catch(Exception ex)
             {
@@ -788,10 +813,19 @@ namespace GuardianOfTime
         /// </summary>
         private void RefreshHairColor()
         {
-            HairColorBox.Items.Clear();
-            foreach(Hair val in HairList)
+            try
             {
-                HairColorBox.Items.Add(val.Color);
+                LW.Debug("Refreshing Hair Colors.");
+                HairColorBox.Items.Clear();
+                foreach (Hair val in HairList)
+                {
+                    HairColorBox.Items.Add(val.Color);
+                }
+                LW.Debug("Hair Colors : OK.");
+            }
+            catch(Exception ex)
+            {
+                LW.Error(ex);
             }
         }
 
@@ -800,10 +834,19 @@ namespace GuardianOfTime
         /// </summary>
         private void RefreshHairLength()
         {
-            HairLengthBox.Items.Clear();
-            foreach(Hair val in HairList)
+            try
             {
-                HairLengthBox.Items.Add(val.Length);
+                LW.Debug("Refreshing Hair Lengths.");
+                HairLengthBox.Items.Clear();
+                foreach (Hair val in HairList)
+                {
+                    HairLengthBox.Items.Add(val.Length);
+                }
+                LW.Debug("Hair Length : OK.");
+            }
+            catch(Exception ex)
+            {
+                LW.Error(ex);
             }
         }
 
@@ -812,10 +855,19 @@ namespace GuardianOfTime
         /// </summary>
         private void RefreshEyesColor()
         {
-            EyeColorBox.Items.Clear();
-            foreach(string val in EC)
+            try
             {
-                EyeColorBox.Items.Add(val);
+                LW.Debug("Refreshing Eye Colors.");
+                EyeColorBox.Items.Clear();
+                foreach (string val in EC)
+                {
+                    EyeColorBox.Items.Add(val);
+                }
+                LW.Debug("Eye Colors : OK.");
+            }
+            catch(Exception ex)
+            {
+                LW.Error(ex);
             }
         }
 
@@ -826,11 +878,13 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Likes.");
                 RefreshLike1();
                 RefreshLike2();
                 RefreshLike3();
                 RefreshLike4();
                 RefreshLike5();
+                LW.Debug("Likes : OK.");
             }
             catch(Exception ex)
             {
@@ -845,6 +899,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Likes 1.");
                 LikeBox1.Items.Clear();
                 bool add;
                 foreach (Thing value in Things)
@@ -864,6 +919,7 @@ namespace GuardianOfTime
                         LikeBox1.Items.Add(value.Name);
                     }
                 }
+                LW.Debug("Likes 1 : OK.");
             }
             catch (Exception ex)
             {
@@ -878,6 +934,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Likes 2.");
                 LikeBox2.Items.Clear();
                 bool add;
                 foreach (Thing value in Things)
@@ -894,6 +951,7 @@ namespace GuardianOfTime
                         LikeBox2.Items.Add(value.Name);
                     }
                 }
+                LW.Debug("Likes 2 : OK.");
             }
             catch (Exception ex)
             {
@@ -908,6 +966,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Likes 3.");
                 LikeBox3.Items.Clear();
                 bool add;
                 foreach (Thing value in Things)
@@ -924,6 +983,7 @@ namespace GuardianOfTime
                         LikeBox3.Items.Add(value.Name);
                     }
                 }
+                LW.Debug("Likes 3 : OK.");
             }
             catch (Exception ex)
             {
@@ -938,6 +998,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Likes 4.");
                 LikeBox4.Items.Clear();
                 bool add;
                 foreach (Thing value in Things)
@@ -954,6 +1015,7 @@ namespace GuardianOfTime
                         LikeBox4.Items.Add(value.Name);
                     }
                 }
+                LW.Debug("Likes 4 : OK.");
             }
             catch (Exception ex)
             {
@@ -968,6 +1030,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Likes 5.");
                 LikeBox5.Items.Clear();
                 bool add;
                 foreach (Thing value in Things)
@@ -985,6 +1048,7 @@ namespace GuardianOfTime
                         LikeBox5.Items.Add(value.Name);
                     }
                 }
+                LW.Debug("Likes 5 : OK.");
             }
             catch (Exception ex)
             {
@@ -999,11 +1063,13 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Unlikes.");
                 RefreshUnlike1();
                 RefreshUnlike2();
                 RefreshUnlike3();
                 RefreshUnlike4();
                 RefreshUnlike5();
+                LW.Debug("Unlikes : OK.");
             }
             catch (Exception ex)
             {
@@ -1018,6 +1084,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Unlikes 1.");
                 UnlikeBox1.Items.Clear();
                 bool add;
                 foreach (Thing value in Things)
@@ -1037,6 +1104,7 @@ namespace GuardianOfTime
                         UnlikeBox1.Items.Add(value.Name);
                     }
                 }
+                LW.Debug("Unlikes 1 : OK.");
             }
             catch (Exception ex)
             {
@@ -1051,6 +1119,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Unlikes 2.");
                 UnlikeBox2.Items.Clear();
                 bool add;
                 foreach (Thing value in Things)
@@ -1067,6 +1136,7 @@ namespace GuardianOfTime
                         UnlikeBox2.Items.Add(value.Name);
                     }
                 }
+                LW.Debug("Unlikes 2 : OK.");
             }
             catch (Exception ex)
             {
@@ -1081,6 +1151,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Unlikes 3.");
                 UnlikeBox3.Items.Clear();
                 bool add;
                 foreach (Thing value in Things)
@@ -1097,6 +1168,7 @@ namespace GuardianOfTime
                         UnlikeBox3.Items.Add(value.Name);
                     }
                 }
+                LW.Debug("Unlikes 3 : OK.");
             }
             catch (Exception ex)
             {
@@ -1111,6 +1183,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Unlikes 4.");
                 UnlikeBox4.Items.Clear();
                 bool add;
                 foreach (Thing value in Things)
@@ -1127,6 +1200,7 @@ namespace GuardianOfTime
                         UnlikeBox4.Items.Add(value.Name);
                     }
                 }
+                LW.Debug("Unlikes 4 : OK.");
             }
             catch (Exception ex)
             {
@@ -1141,6 +1215,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Unlikes 5.");
                 UnlikeBox5.Items.Clear();
                 bool add;
                 foreach (Thing value in Things)
@@ -1158,6 +1233,7 @@ namespace GuardianOfTime
                         UnlikeBox5.Items.Add(value.Name);
                     }
                 }
+                LW.Debug("Unlikes 5 : OK.");
             }
             catch (Exception ex)
             {
@@ -1172,10 +1248,12 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Activities.");
                 RefreshActivity1();
                 RefreshActivity2();
                 RefreshActivity3();
                 RefreshActivity4();
+                LW.Debug("Activities : OK.");
             }
             catch(Exception ex)
             {
@@ -1190,6 +1268,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Activity 1.");
                 ActBox1.Items.Clear();
                 bool add;
                 foreach (Activity value in Acts)
@@ -1214,6 +1293,7 @@ namespace GuardianOfTime
                         ActBox1.Items.Add(value.Title);
                     }
                 }
+                LW.Debug("Activity 1 : OK.");
             }
             catch(Exception ex)
             {
@@ -1228,6 +1308,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Activity 2.");
                 ActBox2.Items.Clear();
                 bool add;
                 foreach (Activity value in Acts)
@@ -1253,6 +1334,7 @@ namespace GuardianOfTime
                         ActBox2.Items.Add(value.Title);
                     }
                 }
+                LW.Debug("Activity 2 : OK.");
             }
             catch (Exception ex)
             {
@@ -1267,6 +1349,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Activity 3.");
                 ActBox3.Items.Clear();
                 bool add;
                 foreach (Activity value in Acts)
@@ -1292,6 +1375,7 @@ namespace GuardianOfTime
                         ActBox3.Items.Add(value.Title);
                     }
                 }
+                LW.Debug("Activity 3 : OK.");
             }
             catch (Exception ex)
             {
@@ -1306,6 +1390,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Activity 4.");
                 ActBox4.Items.Clear();
                 bool add;
                 foreach (Activity value in Acts)
@@ -1331,6 +1416,7 @@ namespace GuardianOfTime
                         ActBox4.Items.Add(value.Title);
                     }
                 }
+                LW.Debug("Activity 4 : OK.");
             }
             catch (Exception ex)
             {
@@ -1345,10 +1431,12 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Weapons.");
                 RefreshWeapon1();
                 RefreshWeapon2();
                 RefreshWeapon3();
                 RefreshWeapon4();
+                LW.Debug("Weapons : OK.");
             }
             catch(Exception ex)
             {
@@ -1363,6 +1451,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Weapon 1.");
                 WeaponBox1.Items.Clear();
                 bool add;
                 foreach (Weapon value in Weapons)
@@ -1404,6 +1493,7 @@ namespace GuardianOfTime
                         WeaponBox1.Items.Add(value.Name);
                     }
                 }
+                LW.Debug("Weapon 1 : OK.");
             }
             catch (Exception ex)
             {
@@ -1418,6 +1508,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Weapon 2.");
                 WeaponBox2.Items.Clear();
                 bool add;
                 foreach (Weapon value in Weapons)
@@ -1450,6 +1541,7 @@ namespace GuardianOfTime
                         WeaponBox2.Items.Add(value.Name);
                     }
                 }
+                LW.Debug("Weapon 2 : OK.");
             }
             catch (Exception ex)
             {
@@ -1464,6 +1556,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Weapon 3.");
                 WeaponBox3.Items.Clear();
                 bool add;
                 foreach (Weapon value in Weapons)
@@ -1497,6 +1590,7 @@ namespace GuardianOfTime
                         WeaponBox3.Items.Add(value.Name);
                     }
                 }
+                LW.Debug("Weapon 3 : OK.");
             }
             catch (Exception ex)
             {
@@ -1511,6 +1605,7 @@ namespace GuardianOfTime
         {
             try
             {
+                LW.Debug("Refreshing Weapon 4.");
                 WeaponBox4.Items.Clear();
                 bool add;
                 foreach (Weapon value in Weapons)
@@ -1545,6 +1640,7 @@ namespace GuardianOfTime
                         WeaponBox4.Items.Add(value.Name);
                     }
                 }
+                LW.Debug("Weapon 4 : OK.");
             }
             catch (Exception ex)
             {
@@ -1561,6 +1657,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void TimelineBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LW.Debug("Timeline changed.");
             RefreshActivities();
         }
 
@@ -1571,6 +1668,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void RaceBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LW.Debug("Race changed.");
             RefreshLNames();
             RefreshFNames();
             RefreshHeightLimit();
@@ -1583,6 +1681,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void ElementBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LW.Debug("Element 1 changed.");
             RefreshElements2();
             RefreshWeapons();
         }
@@ -1594,6 +1693,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void ElementBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LW.Debug("Element 2 changed.");
             RefreshWeapons();
         }
 
@@ -1604,6 +1704,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void PowerBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LW.Debug("Power 1 changed.");
             RefreshPowers2();
         }
 
@@ -1614,6 +1715,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void LikeBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LW.Debug("Like 1 changed.");
             RefreshLike2();
             RefreshLike3();
             RefreshLike4();
@@ -1632,6 +1734,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void LikeBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LW.Debug("Like 2 changed.");
             RefreshLike3();
             RefreshLike4();
             RefreshLike5();
@@ -1648,6 +1751,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void LikeBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LW.Debug("Like 3 changed.");
             RefreshLike4();
             RefreshLike5();
             RefreshUnlike3();
@@ -1662,6 +1766,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void LikeBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LW.Debug("Like 4 changed.");
             RefreshLike5();
             RefreshUnlike4();
             RefreshUnlike5();
@@ -1674,6 +1779,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void LikeBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LW.Debug("Like 5 changed.");
             RefreshUnlike5();
         }
 
@@ -1684,6 +1790,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void UnlikeBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LW.Debug("Unlike 1 changed.");
             RefreshLike2();
             RefreshLike3();
             RefreshLike4();
@@ -1701,6 +1808,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void UnlikeBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LW.Debug("Unlike 2 changed.");
             RefreshLike3();
             RefreshLike4();
             RefreshLike5();
@@ -1716,6 +1824,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void UnlikeBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LW.Debug("Unlike 3 changed.");
             RefreshLike4();
             RefreshLike5();
             RefreshUnlike4();
@@ -1729,6 +1838,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void UnlikeBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LW.Debug("Unlike 4 changed.");
             RefreshLike5();
             RefreshUnlike5();
         }
@@ -1740,6 +1850,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void ActBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LW.Debug("Activity 1 changed.");
             RefreshActivity2();
             RefreshActivity3();
             RefreshActivity4();
@@ -1752,6 +1863,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void ActBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LW.Debug("Activity 2 changed.");
             RefreshActivity3();
             RefreshActivity4();
         }
@@ -1763,6 +1875,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void ActBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LW.Debug("Activity 3 changed.");
             RefreshActivity4();
         }
 
@@ -1773,6 +1886,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void BirthMonth_ValueChanged(object sender, EventArgs e)
         {
+            LW.Debug("Birth month changed.");
             RefreshDatesLimit();
         }
 
@@ -1783,6 +1897,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void WeaponBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LW.Debug("Weapon 1 changed.");
             RefreshWeapon2();
             RefreshWeapon3();
             RefreshWeapon4();
@@ -1795,6 +1910,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void WeaponBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LW.Debug("Weapon 2 changed.");
             RefreshWeapon3();
             RefreshWeapon4();
         }
@@ -1806,6 +1922,7 @@ namespace GuardianOfTime
         /// <param name="e"></param>
         private void WeaponBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LW.Debug("Weapon 3 changed.");
             RefreshWeapon4();
         }
         #endregion Refresh App Changes
