@@ -22,8 +22,8 @@ namespace GuardianOfTime
         public Race Race { get { return race; } set { race = value; } }
         private int height;
         public int Height { get { return height; } set { height = value; } }
-        private DateTime birth;
-        public DateTime Birth { get { return Birth; } set { birth = value; } }
+        private TimeDate birth;
+        public TimeDate Birth { get { return Birth; } set { birth = value; } }
         private Timeline timeLine;
         public Timeline TimeLine { get { return timeLine; } set { timeLine = value; } }
         public List<Thing> Likes;
@@ -50,7 +50,7 @@ namespace GuardianOfTime
 
         //Creates a character without all the lists
         public Character(LastName LastName, string FirstName, Hair Hair, string EyesColor,Race Race, int Height,
-            DateTime DateOfBirth, Timeline TimeLine)
+            TimeDate DateOfBirth, Timeline TimeLine)
         {
             this.LastName = LastName;
             this.FirstName = FirstName;
@@ -65,7 +65,7 @@ namespace GuardianOfTime
 
         //Creates a complete character.
         public Character(LastName LastName, string FirstName, Hair Hair, string EyesColor, Race Race, int Height,
-            DateTime DateOfBirth, Timeline Timeline, List<Thing> Likes, List<Thing> Unlikes, List<string> Elements,
+            TimeDate DateOfBirth, Timeline Timeline, List<Thing> Likes, List<Thing> Unlikes, List<string> Elements,
             List<Power> Powers, List<Activity> Activities, List<BackStory> Backstory, List<Weapon> Weapons,
             Character BaseCharacter)
         {

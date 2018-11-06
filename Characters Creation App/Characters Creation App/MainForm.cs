@@ -45,9 +45,9 @@ namespace GuardianOfTime
                 InitializeComponent();
                 LW.Debug("Initializing World Lists.");
                 #region Timelines
-                TLs.Add(new Timeline("Originelle", new DateTime(2512, 1, 1)));//2512o, 16100MK
-                TLs.Add(new Timeline("MK-0/MK-2", new DateTime(2050, 1, 1)));//2050o, 15638MK
-                TLs.Add(new Timeline("MK-1", new DateTime(9260, 1, 1)));//-13588o, 260MK
+                TLs.Add(new Timeline("Originelle", new TimeDate(16100, 1, 1)));//2512o, 16100MK
+                TLs.Add(new Timeline("MK-0/MK-2", new TimeDate(15638, 1, 1)));//2050o, 15638MK
+                TLs.Add(new Timeline("MK-1", new TimeDate(260, 1, 1)));//-13588o, 260MK
                 #endregion Timelines
                 #region Activities/Titles
                 //Originelle
@@ -61,8 +61,8 @@ namespace GuardianOfTime
                 Acts.Add(new Activity("Wind God", TLs[0]));
                 Acts.Add(new Activity("Thunder God", TLs[0]));
                 Acts.Add(new Activity("Light God", TLs[0]));
-                Acts.Add(new Activity("Drakness" +
-                    " God", TLs[0]));
+                Acts.Add(new Activity("Drakness God", TLs[0]));
+                Acts.Add(new Activity("Blacksmith", TLs[0]));
                 //MK-0|MK-2
                 Acts.Add(new Activity("1st Dragon Council", TLs[1]));
                 Acts.Add(new Activity("2nd Dragon Council", TLs[1]));
@@ -186,6 +186,7 @@ namespace GuardianOfTime
                 Races.Add(new Race("Vampire"));
                 Races.Add(new Race("Humain"));
                 Races.Add(new Race("Démon draconnique"));
+                Races.Add(new Race("Dieu élémentaire"));
                 #endregion Races
                 #region Eyes
                 EC.Add("Bleu");
@@ -199,47 +200,11 @@ namespace GuardianOfTime
                 #endregion Eyes
                 #region Hair
                 HairList.Add(new Hair("Noir", "Chauve"));
-                HairList.Add(new Hair("Noir", "Court"));
-                HairList.Add(new Hair("Noir", "Mi-court"));
-                HairList.Add(new Hair("Noir", "Mi-long"));
-                HairList.Add(new Hair("Noir", "Long"));
-                HairList.Add(new Hair("Noir", "Spécial"));
-                HairList.Add(new Hair("Gris", "Chauve"));
                 HairList.Add(new Hair("Gris", "Court"));
-                HairList.Add(new Hair("Gris", "Mi-court"));
-                HairList.Add(new Hair("Gris", "Mi-long"));
-                HairList.Add(new Hair("Gris", "Long"));
-                HairList.Add(new Hair("Gris", "Spécial"));
-                HairList.Add(new Hair("Blanc", "Chauve"));
-                HairList.Add(new Hair("Blanc", "Court"));
                 HairList.Add(new Hair("Blanc", "Mi-court"));
-                HairList.Add(new Hair("Blanc", "Mi-long"));
-                HairList.Add(new Hair("Blanc", "Long"));
-                HairList.Add(new Hair("Blanc", "Spécial"));
-                HairList.Add(new Hair("Brun", "Chauve"));
-                HairList.Add(new Hair("Brun", "Court"));
-                HairList.Add(new Hair("Brun", "Mi-court"));
-                HairList.Add(new Hair("Brun", "Mi-long"));
-                HairList.Add(new Hair("Brun", "Long"));
-                HairList.Add(new Hair("Brun", "Spécial"));
-                HairList.Add(new Hair("Blond", "Chauve"));
-                HairList.Add(new Hair("Blond", "Court"));
-                HairList.Add(new Hair("Blond", "Mi-court"));
                 HairList.Add(new Hair("Blond", "Mi-long"));
-                HairList.Add(new Hair("Blond", "Long"));
-                HairList.Add(new Hair("Blond", "Spécial"));
-                HairList.Add(new Hair("Roux", "Chauve"));
-                HairList.Add(new Hair("Roux", "Court"));
-                HairList.Add(new Hair("Roux", "Mi-court"));
-                HairList.Add(new Hair("Roux", "Mi-long"));
                 HairList.Add(new Hair("Roux", "Long"));
-                HairList.Add(new Hair("Roux", "Spécial"));
-                HairList.Add(new Hair("Spéciale", "Chauve"));
-                HairList.Add(new Hair("Spéciale", "Court"));
-                HairList.Add(new Hair("Spéciale", "Mi-court"));
-                HairList.Add(new Hair("Spéciale", "Mi-long"));
-                HairList.Add(new Hair("Spéciale", "Long"));
-                HairList.Add(new Hair("Spéciale", "Spécial"));
+                HairList.Add(new Hair("Brun", "Crête"));
                 #endregion Hair
                 #region Things
                 Things.Add(new Thing("Nourriture"));
@@ -423,6 +388,1426 @@ namespace GuardianOfTime
             {
                 LW.Error(ex);
             }
+
+            try
+            {
+                LW.Debug("Loading Boxes.");
+                //Initial Load
+                LoadBoxes();
+                
+            }
+            catch(Exception ex)
+            {
+                LW.Error(ex);
+            }
         }
+
+        /// <summary>
+        /// Initial load of all boxes
+        /// </summary>
+        private void LoadBoxes()
+        {
+            try
+            {
+                //Timelines
+                LW.Debug("Loading timelines.");
+                RefreshTimelines();
+                //Races
+                LW.Debug("Loading races.");
+                RefreshRaces();
+                //Names
+                LW.Debug("Loading names.");
+                RefreshLNames();
+                RefreshFNames();
+                //Elements
+                LW.Debug("Loading elements.");
+                RefreshElements();
+                //Powers
+                LW.Debug("Loading powers.");
+                RefreshPowers();
+                //Hair
+                LW.Debug("Loading hairs.");
+                RefreshHairColor();
+                RefreshHairLength();
+                //Eyes
+                LW.Debug("Loading eyes.");
+                RefreshEyesColor();
+                //Things
+                LW.Debug("Loading stuff.");
+                RefreshLikes();
+                RefreshUnlikes();
+                //Activities
+                LW.Debug("Loading activities.");
+                RefreshActivities();
+                //Weapons
+                LW.Debug("Loading weapons.");
+                RefreshWeapons();
+                //Other
+                RefreshDatesLimit();
+            }
+            catch(Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        #region Refresh functions
+        /// <summary>
+        /// Refresh the timelines boxes
+        /// </summary>
+        private void RefreshTimelines()
+        {
+            try
+            {
+                TimelineBox.Items.Clear();
+                foreach (Timeline t in TLs)
+                {
+                    TimelineBox.Items.Add(t.Name);
+                }
+            }
+            catch(Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh the races boxes
+        /// </summary>
+        private void RefreshRaces()
+        {
+            try
+            {
+                RaceBox.Items.Clear();
+                foreach (Race r in Races)
+                {
+                    RaceBox.Items.Add(r.Name);
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh last names
+        /// </summary>
+        private void RefreshLNames()
+        {
+            try
+            {
+                LNameBox.Items.Clear();
+                if (RaceBox.SelectedIndex == -1)
+                {
+                    foreach (Character val in CharaList)
+                    {
+                        if (!(LNameBox.Items.Contains(val.LastName.Name)))
+                        {
+                            LNameBox.Items.Add(val.LastName.Name);
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (Character val in CharaList)
+                    {
+                        if (RaceBox.SelectedItem.ToString() == val.LastName.Race.Name)
+                        {
+                            if (!(LNameBox.Items.Contains(val.LastName.Name)))
+                            {
+                                LNameBox.Items.Add(val.LastName.Name);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh first names
+        /// </summary>
+        private void RefreshFNames()
+        {
+            try
+            {
+                FNameBox.Items.Clear();
+                if (RaceBox.SelectedItem.ToString() == Races[0].Name)
+                {
+                    bool add;
+                    LNameBox.Enabled = false;
+                    FNameBox.DropDownStyle = ComboBoxStyle.DropDownList;
+                    foreach (string value in W.DragonNames)
+                    {
+                        add = true;
+                        foreach (Character val in CharaList)
+                        {
+                            if (val.Race.Name == Races[0].Name)
+                            {
+                                if (val.FirstName == value)
+                                {
+                                    add = false;
+                                }
+                            }
+                        }
+                        if (add)
+                        {
+                            FNameBox.Items.Add(value);
+                        }
+                    }
+                }
+                else
+                {
+                    LNameBox.Enabled = true;
+                    FNameBox.DropDownStyle = ComboBoxStyle.DropDown;
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh elements
+        /// </summary>
+        private void RefreshElements()
+        {
+            try
+            {
+                RefreshElements1();
+                RefreshElements2();
+            }
+            catch(Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh ElementsBox
+        /// </summary>
+        private void RefreshElements1()
+        {
+            try
+            {
+                ElementBox.Items.Clear();
+                foreach (string val in W.Elements)
+                {
+                    ElementBox.Items.Add(val);
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh ElementsBox2
+        /// </summary>
+        private void RefreshElements2()
+        {
+            try
+            {
+                ElementBox2.Items.Clear();
+                if (ElementBox.SelectedIndex != -1)
+                {
+                    foreach (string val in W.Elements)
+                    {
+                        if (ElementBox.SelectedItem.ToString() != val)
+                        {
+                            ElementBox2.Items.Add(val);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh powers
+        /// </summary>
+        private void RefreshPowers()
+        {
+            try
+            {
+                RefreshPowers1();
+                RefreshPowers2();
+            }
+            catch(Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh PowersBox1
+        /// </summary>
+        private void RefreshPowers1()
+        {
+            try
+            {
+                PowerBox.Items.Clear();
+                bool add;
+                foreach(Power value in Powers)
+                {
+                    add = true;
+                    foreach (Character val in CharaList)
+                    {
+                        if (val.Powers.Contains(value))
+                        {
+                            add = false;
+                        }
+                    }
+                    if (add)
+                    {
+                        PowerBox.Items.Add(value.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh PowersBox2
+        /// </summary>
+        private void RefreshPowers2()
+        {
+            try
+            {
+                PowerBox2.Items.Clear();
+                bool add;
+                foreach (Power value in Powers)
+                {
+                    add = true;
+                    foreach (Character val in CharaList)
+                    {
+                        if (val.Powers.Contains(value))
+                        {
+                            add = false;
+                        }
+                    }
+                    if (PowerBox.SelectedItem.ToString() == value.Name) add = false;
+                    if (add)
+                    {
+                        PowerBox2.Items.Add(value.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh birthDay limit
+        /// </summary>
+        private void RefreshDatesLimit()
+        {
+            try
+            {
+                switch(BirthMonth.Value)
+                {
+                    case 1:
+                    case 3:
+                    case 5:
+                    case 7:
+                    case 8:
+                    case 10:
+                    case 12:
+                        BirthDay.Maximum = 31;
+                        break;
+                    case 2:
+                        if (BirthYear.Value % 4 == 0) BirthDay.Maximum = 29;
+                        else BirthDay.Maximum = 28;
+                        break;
+                    case 4:
+                    case 6:
+                    case 9:
+                    case 11:
+                        BirthDay.Maximum = 30;
+                        break;
+                    default:
+                        BirthDay.Maximum = 31;
+                        break;
+                }
+            }
+            catch(Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh HeightLimits
+        /// </summary>
+        private void RefreshHeightLimit()
+        {
+            try
+            {
+                switch(RaceBox.SelectedItem.ToString())
+                {
+                    case "Dieu élémentaire":
+                        HeightMin.Minimum = World.GodMinHeight;
+                        HeightMax.Minimum = World.GodMinHeight;
+                        HeightBox.Minimum = World.GodMinHeight;
+                        HeightMin.Maximum = World.GodMaxHeight;
+                        HeightMax.Maximum = World.GodMaxHeight;
+                        HeightBox.Maximum = World.GodMaxHeight;
+                        break;
+                    default:
+                        HeightMin.Minimum = World.PeopleMinHeight;
+                        HeightMax.Minimum = World.PeopleMinHeight;
+                        HeightBox.Minimum = World.PeopleMinHeight;
+                        HeightMin.Maximum = World.PeopleMaxHeight;
+                        HeightMax.Maximum = World.PeopleMaxHeight;
+                        HeightBox.Maximum = World.PeopleMaxHeight;
+                        break;
+                }
+            }
+            catch(Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh Hair Color
+        /// </summary>
+        private void RefreshHairColor()
+        {
+            HairColorBox.Items.Clear();
+            foreach(Hair val in HairList)
+            {
+                HairColorBox.Items.Add(val.Color);
+            }
+        }
+
+        /// <summary>
+        /// Refresh Hair Length
+        /// </summary>
+        private void RefreshHairLength()
+        {
+            HairLengthBox.Items.Clear();
+            foreach(Hair val in HairList)
+            {
+                HairLengthBox.Items.Add(val.Length);
+            }
+        }
+
+        /// <summary>
+        /// Refresh Eyes Color
+        /// </summary>
+        private void RefreshEyesColor()
+        {
+            EyeColorBox.Items.Clear();
+            foreach(string val in EC)
+            {
+                EyeColorBox.Items.Add(val);
+            }
+        }
+
+        /// <summary>
+        /// Refresh likes
+        /// </summary>
+        private void RefreshLikes()
+        {
+            try
+            {
+                RefreshLike1();
+                RefreshLike2();
+                RefreshLike3();
+                RefreshLike4();
+                RefreshLike5();
+            }
+            catch(Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh LikeBox1
+        /// </summary>
+        private void RefreshLike1()
+        {
+            try
+            {
+                LikeBox1.Items.Clear();
+                bool add;
+                foreach (Thing value in Things)
+                {
+                    add = true;
+                    if (UnlikeBox1.SelectedIndex != -1) if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox2.SelectedIndex != -1) if (UnlikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox3.SelectedIndex != -1) if (UnlikeBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox4.SelectedIndex != -1) if (UnlikeBox4.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox5.SelectedIndex != -1) if (UnlikeBox5.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox2.SelectedIndex != -1) if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox3.SelectedIndex != -1) if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox4.SelectedIndex != -1) if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox5.SelectedIndex != -1) if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (add)
+                    {
+                        LikeBox1.Items.Add(value.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh LikeBox2
+        /// </summary>
+        private void RefreshLike2()
+        {
+            try
+            {
+                LikeBox2.Items.Clear();
+                bool add;
+                foreach (Thing value in Things)
+                {
+                    add = true;
+                    if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox2.SelectedIndex != -1) if (UnlikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox3.SelectedIndex != -1) if (UnlikeBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox4.SelectedIndex != -1) if (UnlikeBox4.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox5.SelectedIndex != -1) if (UnlikeBox5.SelectedItem.ToString() == value.Name) add = false;
+                    if (add)
+                    {
+                        LikeBox2.Items.Add(value.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh LikeBox3
+        /// </summary>
+        private void RefreshLike3()
+        {
+            try
+            {
+                LikeBox3.Items.Clear();
+                bool add;
+                foreach (Thing value in Things)
+                {
+                    add = true;
+                    if (LikeBox1.SelectedItem.ToString() == value.Name || LikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox3.SelectedIndex != -1) if (UnlikeBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox4.SelectedIndex != -1) if (UnlikeBox4.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox5.SelectedIndex != -1) if (UnlikeBox5.SelectedItem.ToString() == value.Name) add = false;
+                    if (add)
+                    {
+                        LikeBox3.Items.Add(value.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh LikeBox4
+        /// </summary>
+        private void RefreshLike4()
+        {
+            try
+            {
+                LikeBox4.Items.Clear();
+                bool add;
+                foreach (Thing value in Things)
+                {
+                    add = true;
+                    if (LikeBox1.SelectedItem.ToString() == value.Name || LikeBox2.SelectedItem.ToString() == value.Name || LikeBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox4.SelectedIndex != -1) if (UnlikeBox4.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox5.SelectedIndex != -1) if (UnlikeBox5.SelectedItem.ToString() == value.Name) add = false;
+                    if (add)
+                    {
+                        LikeBox4.Items.Add(value.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh LikeBox5
+        /// </summary>
+        private void RefreshLike5()
+        {
+            try
+            {
+                LikeBox5.Items.Clear();
+                bool add;
+                foreach (Thing value in Things)
+                {
+                    add = true;
+                    if (LikeBox1.SelectedItem.ToString() == value.Name || LikeBox2.SelectedItem.ToString() == value.Name || LikeBox3.SelectedItem.ToString() == value.Name || 
+                        LikeBox4.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox4.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox5.SelectedIndex != -1) if (UnlikeBox5.SelectedItem.ToString() == value.Name) add = false;
+                    if (add)
+                    {
+                        LikeBox5.Items.Add(value.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh unlikes
+        /// </summary>
+        private void RefreshUnlikes()
+        {
+            try
+            {
+                RefreshUnlike1();
+                RefreshUnlike2();
+                RefreshUnlike3();
+                RefreshUnlike4();
+                RefreshUnlike5();
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh UnlikeBox1
+        /// </summary>
+        private void RefreshUnlike1()
+        {
+            try
+            {
+                UnlikeBox1.Items.Clear();
+                bool add;
+                foreach (Thing value in Things)
+                {
+                    add = true;
+                    if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox2.SelectedIndex != -1) if (LikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox3.SelectedIndex != -1) if (LikeBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox4.SelectedIndex != -1) if (LikeBox4.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox5.SelectedIndex != -1) if (LikeBox5.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox2.SelectedIndex != -1) if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox3.SelectedIndex != -1) if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox4.SelectedIndex != -1) if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox5.SelectedIndex != -1) if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (add)
+                    {
+                        UnlikeBox1.Items.Add(value.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh LikeBox2
+        /// </summary>
+        private void RefreshUnlike2()
+        {
+            try
+            {
+                UnlikeBox2.Items.Clear();
+                bool add;
+                foreach (Thing value in Things)
+                {
+                    add = true;
+                    if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox3.SelectedIndex != -1) if (LikeBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox4.SelectedIndex != -1) if (LikeBox4.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox5.SelectedIndex != -1) if (LikeBox5.SelectedItem.ToString() == value.Name) add = false;
+                    if (add)
+                    {
+                        UnlikeBox2.Items.Add(value.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh LikeBox3
+        /// </summary>
+        private void RefreshUnlike3()
+        {
+            try
+            {
+                UnlikeBox3.Items.Clear();
+                bool add;
+                foreach (Thing value in Things)
+                {
+                    add = true;
+                    if (UnlikeBox1.SelectedItem.ToString() == value.Name || UnlikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox4.SelectedIndex != -1) if (LikeBox4.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox5.SelectedIndex != -1) if (LikeBox5.SelectedItem.ToString() == value.Name) add = false;
+                    if (add)
+                    {
+                        UnlikeBox3.Items.Add(value.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh LikeBox4
+        /// </summary>
+        private void RefreshUnlike4()
+        {
+            try
+            {
+                UnlikeBox4.Items.Clear();
+                bool add;
+                foreach (Thing value in Things)
+                {
+                    add = true;
+                    if (UnlikeBox1.SelectedItem.ToString() == value.Name || UnlikeBox2.SelectedItem.ToString() == value.Name || UnlikeBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox4.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox5.SelectedIndex != -1) if (LikeBox5.SelectedItem.ToString() == value.Name) add = false;
+                    if (add)
+                    {
+                        UnlikeBox4.Items.Add(value.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh LikeBox5
+        /// </summary>
+        private void RefreshUnlike5()
+        {
+            try
+            {
+                UnlikeBox5.Items.Clear();
+                bool add;
+                foreach (Thing value in Things)
+                {
+                    add = true;
+                    if (UnlikeBox1.SelectedItem.ToString() == value.Name || UnlikeBox2.SelectedItem.ToString() == value.Name || UnlikeBox3.SelectedItem.ToString() == value.Name ||
+                        UnlikeBox4.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox4.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox5.SelectedItem.ToString() == value.Name) add = false;
+                    if (add)
+                    {
+                        UnlikeBox5.Items.Add(value.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh activities
+        /// </summary>
+        private void RefreshActivities()
+        {
+            try
+            {
+                RefreshActivity1();
+                RefreshActivity2();
+                RefreshActivity3();
+                RefreshActivity4();
+            }
+            catch(Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh ActivityBox1
+        /// </summary>
+        private void RefreshActivity1()
+        {
+            try
+            {
+                ActBox1.Items.Clear();
+                bool add;
+                foreach (Activity value in Acts)
+                {
+                    add = true;
+                    if (value.Timeline.Name == TimelineBox.SelectedItem.ToString())
+                    {
+                        foreach (Character val in CharaList)
+                        {
+                            if (val.Activities.Contains(value))
+                            {
+                                add = false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        add = false;
+                    }
+                    if (add)
+                    {
+                        ActBox1.Items.Add(value.Title);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh ActivityBox2
+        /// </summary>
+        private void RefreshActivity2()
+        {
+            try
+            {
+                ActBox2.Items.Clear();
+                bool add;
+                foreach (Activity value in Acts)
+                {
+                    add = true;
+                    if (value.Timeline.Name == TimelineBox.SelectedItem.ToString())
+                    {
+                        foreach (Character val in CharaList)
+                        {
+                            if (val.Activities.Contains(value))
+                            {
+                                add = false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        add = false;
+                    }
+                    if (ActBox1.SelectedItem.ToString() == value.Title) add = false;
+                    if (add)
+                    {
+                        ActBox2.Items.Add(value.Title);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh ActivityBox3
+        /// </summary>
+        private void RefreshActivity3()
+        {
+            try
+            {
+                ActBox3.Items.Clear();
+                bool add;
+                foreach (Activity value in Acts)
+                {
+                    add = true;
+                    if (value.Timeline.Name == TimelineBox.SelectedItem.ToString())
+                    {
+                        foreach (Character val in CharaList)
+                        {
+                            if (val.Activities.Contains(value))
+                            {
+                                add = false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        add = false;
+                    }
+                    if (ActBox1.SelectedItem.ToString() == value.Title || ActBox2.SelectedItem.ToString() == value.Title) add = false;
+                    if (add)
+                    {
+                        ActBox3.Items.Add(value.Title);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh ActivityBox4
+        /// </summary>
+        private void RefreshActivity4()
+        {
+            try
+            {
+                ActBox4.Items.Clear();
+                bool add;
+                foreach (Activity value in Acts)
+                {
+                    add = true;
+                    if (value.Timeline.Name == TimelineBox.SelectedItem.ToString())
+                    {
+                        foreach (Character val in CharaList)
+                        {
+                            if (val.Activities.Contains(value))
+                            {
+                                add = false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        add = false;
+                    }
+                    if (ActBox1.SelectedItem.ToString() == value.Title || ActBox2.SelectedItem.ToString() == value.Title || ActBox3.SelectedItem.ToString() == value.Title) add = false;
+                    if (add)
+                    {
+                        ActBox4.Items.Add(value.Title);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh weapons
+        /// </summary>
+        private void RefreshWeapons()
+        {
+            try
+            {
+                RefreshWeapon1();
+                RefreshWeapon2();
+                RefreshWeapon3();
+                RefreshWeapon4();
+            }
+            catch(Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh WeaponBox1
+        /// </summary>
+        private void RefreshWeapon1()
+        {
+            try
+            {
+                WeaponBox1.Items.Clear();
+                bool add;
+                foreach (Weapon value in Weapons)
+                {
+                    add = true;
+                    if (value.Special)
+                    {
+                        foreach (Character val in CharaList)
+                        {
+                            if (val.Weapons.Contains(value))
+                            {
+                                add = false;
+                            }
+                        }
+                        if (value.Element != null)
+                        {
+                            if (ElementBox.SelectedIndex != -1)
+                            {
+                                if (value.Element != ElementBox.SelectedItem.ToString())
+                                {
+                                    if (ElementBox2.SelectedIndex != -1)
+                                    {
+                                        if (value.Element != ElementBox2.SelectedItem.ToString()) add = false;
+                                    }
+                                    else
+                                    {
+                                        add = false;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                add = false;
+                            }
+                        }
+                    }
+                    if (add)
+                    {
+                        WeaponBox1.Items.Add(value.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh WeaponBox2
+        /// </summary>
+        private void RefreshWeapon2()
+        {
+            try
+            {
+                WeaponBox2.Items.Clear();
+                bool add;
+                foreach (Weapon value in Weapons)
+                {
+                    add = true;
+                    if (value.Special)
+                    {
+                        foreach (Character val in CharaList)
+                        {
+                            if (val.Weapons.Contains(value))
+                            {
+                                add = false;
+                            }
+                        }
+                        if (value.Element != null)
+                        {
+                            if (ElementBox.SelectedIndex != -1)
+                            {
+                                if (value.Element != ElementBox.SelectedItem.ToString()) add = false;
+                            }
+                            if (ElementBox2.SelectedIndex != -1)
+                            {
+                                if (value.Element != ElementBox2.SelectedItem.ToString()) add = false;
+                            }
+                        }
+                    }
+                    if (WeaponBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (add)
+                    {
+                        WeaponBox2.Items.Add(value.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh WeaponBox3
+        /// </summary>
+        private void RefreshWeapon3()
+        {
+            try
+            {
+                WeaponBox3.Items.Clear();
+                bool add;
+                foreach (Weapon value in Weapons)
+                {
+                    add = true;
+                    if (value.Special)
+                    {
+                        foreach (Character val in CharaList)
+                        {
+                            if (val.Weapons.Contains(value))
+                            {
+                                add = false;
+                            }
+                        }
+                        if (value.Element != null)
+                        {
+                            if (ElementBox.SelectedIndex != -1)
+                            {
+                                if (value.Element != ElementBox.SelectedItem.ToString()) add = false;
+                            }
+                            if (ElementBox2.SelectedIndex != -1)
+                            {
+                                if (value.Element != ElementBox2.SelectedItem.ToString()) add = false;
+                            }
+                        }
+                    }
+                    if (WeaponBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (WeaponBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (add)
+                    {
+                        WeaponBox3.Items.Add(value.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Refresh WeaponBox4
+        /// </summary>
+        private void RefreshWeapon4()
+        {
+            try
+            {
+                WeaponBox4.Items.Clear();
+                bool add;
+                foreach (Weapon value in Weapons)
+                {
+                    add = true;
+                    if (value.Special)
+                    {
+                        foreach (Character val in CharaList)
+                        {
+                            if (val.Weapons.Contains(value))
+                            {
+                                add = false;
+                            }
+                        }
+                        if (value.Element != null)
+                        {
+                            if (ElementBox.SelectedIndex != -1)
+                            {
+                                if (value.Element != ElementBox.SelectedItem.ToString()) add = false;
+                            }
+                            if (ElementBox2.SelectedIndex != -1)
+                            {
+                                if (value.Element != ElementBox2.SelectedItem.ToString()) add = false;
+                            }
+                        }
+                    }
+                    if (WeaponBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (WeaponBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (WeaponBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (add)
+                    {
+                        WeaponBox4.Items.Add(value.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+        #endregion Refresh functions
+
+        #region Refresh App Changes
+        /// <summary>
+        /// Timeline changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TimelineBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshActivities();
+        }
+
+        /// <summary>
+        /// Race changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RaceBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshLNames();
+            RefreshFNames();
+            RefreshHeightLimit();
+        }
+
+        /// <summary>
+        /// Element changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ElementBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshElements2();
+            RefreshWeapons();
+        }
+
+        /// <summary>
+        /// Element 2 changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ElementBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshWeapons();
+        }
+
+        /// <summary>
+        /// Power changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PowerBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshPowers2();
+        }
+
+        /// <summary>
+        /// Like 1 changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LikeBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshLike2();
+            RefreshLike3();
+            RefreshLike4();
+            RefreshLike5();
+            RefreshUnlike1();
+            RefreshUnlike2();
+            RefreshUnlike3();
+            RefreshUnlike4();
+            RefreshUnlike5();
+        }
+
+        /// <summary>
+        /// Like 2 changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LikeBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshLike3();
+            RefreshLike4();
+            RefreshLike5();
+            RefreshUnlike2();
+            RefreshUnlike3();
+            RefreshUnlike4();
+            RefreshUnlike5();
+        }
+
+        /// <summary>
+        /// Like 3 changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LikeBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshLike4();
+            RefreshLike5();
+            RefreshUnlike3();
+            RefreshUnlike4();
+            RefreshUnlike5();
+        }
+
+        /// <summary>
+        /// Like 4 changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LikeBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshLike5();
+            RefreshUnlike4();
+            RefreshUnlike5();
+        }
+
+        /// <summary>
+        /// Like 5 changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LikeBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshUnlike5();
+        }
+
+        /// <summary>
+        /// Unlike 1 changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UnlikeBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshLike2();
+            RefreshLike3();
+            RefreshLike4();
+            RefreshLike5();
+            RefreshUnlike2();
+            RefreshUnlike3();
+            RefreshUnlike4();
+            RefreshUnlike5();
+        }
+
+        /// <summary>
+        /// Unlike 2 changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UnlikeBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshLike3();
+            RefreshLike4();
+            RefreshLike5();
+            RefreshUnlike3();
+            RefreshUnlike4();
+            RefreshUnlike5();
+        }
+
+        /// <summary>
+        /// Unlike 3 changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UnlikeBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshLike4();
+            RefreshLike5();
+            RefreshUnlike4();
+            RefreshUnlike5();
+        }
+
+        /// <summary>
+        /// Unlike 4 changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UnlikeBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshLike5();
+            RefreshUnlike5();
+        }
+
+        /// <summary>
+        /// Activity 1 changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ActBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshActivity2();
+            RefreshActivity3();
+            RefreshActivity4();
+        }
+
+        /// <summary>
+        /// Activity 2 changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ActBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshActivity3();
+            RefreshActivity4();
+        }
+
+        /// <summary>
+        /// Activity 3 changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ActBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshActivity4();
+        }
+
+        /// <summary>
+        /// BirthMonth changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BirthMonth_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshDatesLimit();
+        }
+
+        /// <summary>
+        /// Weapon 1 changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WeaponBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshWeapon2();
+            RefreshWeapon3();
+            RefreshWeapon4();
+        }
+
+        /// <summary>
+        /// Weapon 2 changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WeaponBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshWeapon3();
+            RefreshWeapon4();
+        }
+
+        /// <summary>
+        /// Weapon 3 changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WeaponBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshWeapon4();
+        }
+        #endregion Refresh App Changes
     }
 }

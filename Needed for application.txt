@@ -1,60 +1,30 @@
--Ajouter le NdF à la liste à chaque ajout de personnage (1 liste par espèce)
--Spécifier les tailles minimales & maximales des persos (Normaux & Dieux)
+Boutons :
 
-#Race :
--Doit être défini avant NdF & Prénom 
--> Un dragon n'a pas de NdF et son prénom doit être sélectionné dans une liste.
--> Un Dieu a des parmètres spécifiques.
-#Personnage alternatif :
--Un personnage alternatif est une divérgence d'un personnage (D'une autre ligne par exemple).
--> Dans le cas d'un personnage alternatif, certains paramètres doivent être identiques.
-#Nom de famille :
--Doit être entré par l'utilisateur.
--Peut-être sélectionné par l'utilisateur dans la liste de NdF existants.
-#Prénom :
--Doit être entré par l'utilisateur.
--Un personnage ne peut pas avoir les mêmes NdF + Prénom identiques.
-#Longeur de cheveux :
--Random ou à choix dans une liste.
-#Couleur de cheveux :
--Random ou à choix dans une liste.
-#Couleur des yeux :
--Random ou à choix dans une liste.
-Hauteur :
--Random ou à choix entre 100 & 221 cm.
--Un Dieu mesure obligatoirement entre 240 & 260 cm.
-Date de naissance :
--Peut être random mais entre 2 années sélectionnées.
--Nombres négatifs possibles.
--Une ligne temporelle doit être spécifiée.
-Aime :
--Random ou à choix dans une liste.
--Entre 1 et 5 choix.
-N'aime pas :
--Random ou à choix dans une liste
--Entre 1 et 5 choix.
-#Elements :
--Random ou à choix parmi les 8 éléments.
--Peut avoir un 2ème élément parmi les 7 restants si demandé par l'utilisateur.
-->Dans le cas d'un random, 1/500 d'avoir un deuxième élément.
-#Pouvoirs :
--Random ou à choix parmi une liste.
--Aucuns personnages ne peuvent avoir le même pouvoir, à moins de configurer le personnage en tant que personnage alternatif.
-Activités / Titres :
--Random ou à choix parmi une liste.
--"Aucun titre" possible.
--Les activités/titres ont des pré-requis. (Eléments, âge, race, etc...)
--"Plusieurs titres" possible.
--Les titres sont uniques.
-Backstory :
--Peut être entré manuellement.
--Random ou à choix dans une liste.
--"Plusieurs Backstories" possible.
-Armes :
--Random ou à choix dans une liste.
--"Aucune arme" possible.
--"Plusieurs armes" possible.
--"Armes légendaires/élémentales" ont des pré-requis.
--"Armes légendaires/élémentales" ne peuvent pas être obtenues par un random.
-
-Un personnage dont + de 12(75%) paramètres sont défini par le "random" doit avoir le créateur suivant : "Character App par %username%."
+-Randomize :
+	Randomize if not choiced :
+	-Timeline
+	-Race
+	-Element
+	-Element2(1/500)
+	-Power
+	-Power2(1/1000)
+	-BirthDate(if 0)(Years min&max needed)
+	-Height(if 0)(Height min&max needed)
+	-Hair Color
+	-Hair Length
+	-Eyes Color
+	-2 likes
+	-2 unlikes
+	-Weapons(Number and Weapon)(Not Special)
+-Validate Char. :
+	Check if all is ok.
+	Add Character to CharaList.
+	Reset App.
+-Characters List :
+	Shows a list of CharaList in another form.
+	Form need to have possibility to update Character.updated prop.
+	Allows to modificate Character (Later).
+-Save as... :
+	Save CharaList as ".bin".  (or ".xml" if problems)
+-Load :
+	Get CharaList from ".bin" file. (or ".xml" if problems)
