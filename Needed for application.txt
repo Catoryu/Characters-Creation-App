@@ -1,6 +1,7 @@
 Boutons :
 
 -Validate Char. :
+(FOR ALTERNATIVE CHARACTER)
 	Check if all is ok.
 	Add Character to CharaList.
 	Reset App.

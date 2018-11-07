@@ -457,6 +457,7 @@ namespace GuardianOfTime
         /// </summary>
         private void Reset()
         {
+            LW.Debug("Reseting.");
             AltCheckBox.Checked = false;
             TimelineBox.SelectedIndex = -1;
             RaceBox.SelectedIndex = -1;
@@ -2105,7 +2106,7 @@ namespace GuardianOfTime
         {
             try
             {
-                LW.Debug("Validating");
+                LW.Debug("Validating.");
                 int t = -1, r = -1, e1 = -1, e2 = -1, p1 = -1, p2 = -1, l1 = -1, l2 = -1, l3 = -1, l4 = -1, l5 = -1,
                     u1 = -1, u2 = -1, u3 = -1, u4 = -1, u5 = -1, a1 = -1, a2 = -1, a3 = -1, a4 = -1,
                     w1 = -1, w2 = -1, w3 = -1, w4 = -1, i;
