@@ -161,6 +161,13 @@ namespace GuardianOfTime
                 Weapons.Add(new Weapon("Marteau"));
                 Weapons.Add(new Weapon("Hache"));
                 Weapons.Add(new Weapon("Eventail"));
+                Weapons.Add(new Weapon("Wakizashi"));
+                Weapons.Add(new Weapon("Massue"));
+                Weapons.Add(new Weapon("Griffes"));
+                Weapons.Add(new Weapon("Lame à deux mains"));
+                Weapons.Add(new Weapon("Hache à deux mains"));
+                Weapons.Add(new Weapon("Marteau à deux mains"));
+                Weapons.Add(new Weapon("Chaines"));
                 //Legendary Weapons
                 Weapons.Add(new Weapon("Muteki", true));
                 Weapons.Add(new Weapon("Doku", true));
