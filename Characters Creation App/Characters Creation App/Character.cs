@@ -54,12 +54,21 @@ namespace GuardianOfTime
         {
             this.LastName = LastName;
             this.FirstName = FirstName;
+            this.LastName.FirstNames.Add(FirstName);
             this.Hair = Hair;
             this.EyesColor = EyesColor;
             this.Race = Race;
             this.Height = Height;
             this.Birth = DateOfBirth;
             this.TimeLine = TimeLine;
+            this.Likes = new List<Thing>();
+            this.Unlikes = new List<Thing>();
+            this.Elements = new List<string>();
+            this.Powers = new List<Power>();
+            this.Activities = new List<Activity>();
+            this.Backstory = new List<BackStory>();
+            this.Weapons = new List<Weapon>();
+            this.Alternative = null;
             this.Updated = true;
         }
 
