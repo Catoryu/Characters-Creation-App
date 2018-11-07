@@ -23,7 +23,7 @@ namespace GuardianOfTime
         private int height;
         public int Height { get { return height; } set { height = value; } }
         private TimeDate birth;
-        public TimeDate Birth { get { return Birth; } set { birth = value; } }
+        public TimeDate Birth { get { return birth; } set { birth = value; } }
         private Timeline timeLine;
         public Timeline TimeLine { get { return timeLine; } set { timeLine = value; } }
         public List<Thing> Likes;

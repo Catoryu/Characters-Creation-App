@@ -562,6 +562,7 @@
             this.cmdLoad.TabIndex = 41;
             this.cmdLoad.Text = "Load";
             this.cmdLoad.UseVisualStyleBackColor = true;
+            this.cmdLoad.Click += new System.EventHandler(this.cmdLoad_Click);
             // 
             // cmdSave
             // 
@@ -571,6 +572,7 @@
             this.cmdSave.TabIndex = 40;
             this.cmdSave.Text = "Save as...";
             this.cmdSave.UseVisualStyleBackColor = true;
+            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
             // cmdValidate
             // 
@@ -590,6 +592,7 @@
             this.cmdCharaList.TabIndex = 39;
             this.cmdCharaList.Text = "Characters List";
             this.cmdCharaList.UseVisualStyleBackColor = true;
+            this.cmdCharaList.Click += new System.EventHandler(this.cmdCharaList_Click);
             // 
             // cmdRandom
             // 

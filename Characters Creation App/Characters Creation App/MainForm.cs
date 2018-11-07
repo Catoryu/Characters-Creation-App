@@ -16,6 +16,7 @@ namespace GuardianOfTime
     {
         //LogWriter
         private log LW = new log();
+        private serializeBIN SB = new serializeBIN();
 
         //Initializing the world
         private World W = new World();
@@ -1966,6 +1967,11 @@ namespace GuardianOfTime
         }
         #endregion Refresh App Changes
 
+        /// <summary>
+        /// Random generating
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdRandom_Click(object sender, EventArgs e)
         {
             try
@@ -2102,6 +2108,11 @@ namespace GuardianOfTime
             }
         }
 
+        /// <summary>
+        /// Validation of Character
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdValidate_Click(object sender, EventArgs e)
         {
             try
@@ -2293,6 +2304,49 @@ namespace GuardianOfTime
                 }
             }
             catch(Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        private void cmdCharaList_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Saving Characters
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LW.Debug("Saving...");
+                SB.exportObject(CharaList, "CharaList.bin");
+                Reset();
+            }
+            catch(Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Loading Characters
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdLoad_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LW.Debug("Loading...");
+                CharaList = (List<Character>)SB.importObject("CharaList.bin");
+                Reset();
+            }
+            catch (Exception ex)
             {
                 LW.Error(ex);
             }
