@@ -184,6 +184,16 @@
             // BirthYear
             // 
             this.BirthYear.Location = new System.Drawing.Point(150, 370);
+            this.BirthYear.Maximum = new decimal(new int[] {
+            20000,
+            0,
+            0,
+            0});
+            this.BirthYear.Minimum = new decimal(new int[] {
+            20000,
+            0,
+            0,
+            -2147483648});
             this.BirthYear.Name = "BirthYear";
             this.BirthYear.Size = new System.Drawing.Size(100, 20);
             this.BirthYear.TabIndex = 24;
@@ -191,6 +201,16 @@
             // BirthYearMax
             // 
             this.BirthYearMax.Location = new System.Drawing.Point(150, 345);
+            this.BirthYearMax.Maximum = new decimal(new int[] {
+            20000,
+            0,
+            0,
+            0});
+            this.BirthYearMax.Minimum = new decimal(new int[] {
+            20000,
+            0,
+            0,
+            -2147483648});
             this.BirthYearMax.Name = "BirthYearMax";
             this.BirthYearMax.Size = new System.Drawing.Size(100, 20);
             this.BirthYearMax.TabIndex = 23;
@@ -198,6 +218,16 @@
             // BirthYearMin
             // 
             this.BirthYearMin.Location = new System.Drawing.Point(25, 345);
+            this.BirthYearMin.Maximum = new decimal(new int[] {
+            20000,
+            0,
+            0,
+            0});
+            this.BirthYearMin.Minimum = new decimal(new int[] {
+            20000,
+            0,
+            0,
+            -2147483648});
             this.BirthYearMin.Name = "BirthYearMin";
             this.BirthYearMin.Size = new System.Drawing.Size(100, 20);
             this.BirthYearMin.TabIndex = 22;
@@ -550,6 +580,7 @@
             this.cmdValidate.TabIndex = 38;
             this.cmdValidate.Text = "Validate Char.";
             this.cmdValidate.UseVisualStyleBackColor = true;
+            this.cmdValidate.Click += new System.EventHandler(this.cmdValidate_Click);
             // 
             // cmdCharaList
             // 
@@ -568,6 +599,7 @@
             this.cmdRandom.TabIndex = 37;
             this.cmdRandom.Text = "Randomize";
             this.cmdRandom.UseVisualStyleBackColor = true;
+            this.cmdRandom.Click += new System.EventHandler(this.cmdRandom_Click);
             // 
             // BackstoryLabel
             // 

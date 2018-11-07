@@ -1,21 +1,5 @@
 Boutons :
 
--Randomize :
-	Randomize if not choiced :
-	-Timeline
-	-Race
-	-Element
-	-Element2(1/500)
-	-Power
-	-Power2(1/1000)
-	-BirthDate(if 0)(Years min&max needed)
-	-Height(if 0)(Height min&max needed)
-	-Hair Color
-	-Hair Length
-	-Eyes Color
-	-2 likes
-	-2 unlikes
-	-Weapons(Number and Weapon)(Not Special)
 -Validate Char. :
 	Check if all is ok.
 	Add Character to CharaList.

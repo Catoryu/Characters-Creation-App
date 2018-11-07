@@ -452,6 +452,50 @@ namespace GuardianOfTime
             }
         }
 
+        /// <summary>
+        /// Reset all for a new character
+        /// </summary>
+        private void Reset()
+        {
+            AltCheckBox.Checked = false;
+            TimelineBox.SelectedIndex = -1;
+            RaceBox.SelectedIndex = -1;
+            LNameBox.Enabled = true;
+            FNameBox.DropDownStyle = ComboBoxStyle.DropDown;
+            LNameBox.Text = "";
+            FNameBox.Text = "";
+            ElementBox.SelectedIndex = -1;
+            ElementBox2.SelectedIndex = -1;
+            PowerBox.SelectedIndex = -1;
+            PowerBox2.SelectedIndex = -1;
+            BirthDay.Value = 1;
+            BirthMonth.Value = 1;
+            BirthYear.Value = 0;
+            HairColorBox.Text = "";
+            HairLengthBox.Text = "";
+            EyeColorBox.Text = "";
+            LikeBox1.SelectedIndex = -1;
+            UnlikeBox1.SelectedIndex = -1;
+            LikeBox2.SelectedIndex = -1;
+            UnlikeBox2.SelectedIndex = -1;
+            LikeBox3.SelectedIndex = -1;
+            UnlikeBox3.SelectedIndex = -1;
+            LikeBox4.SelectedIndex = -1;
+            UnlikeBox4.SelectedIndex = -1;
+            LikeBox5.SelectedIndex = -1;
+            UnlikeBox5.SelectedIndex = -1;
+            ActBox1.SelectedIndex = -1;
+            ActBox2.SelectedIndex = -1;
+            ActBox3.SelectedIndex = -1;
+            ActBox4.SelectedIndex = -1;
+            BackstoryBox.Text = "";
+            WeaponBox1.SelectedIndex = -1;
+            WeaponBox2.SelectedIndex = -1;
+            WeaponBox3.SelectedIndex = -1;
+            WeaponBox4.SelectedIndex = -1;
+            LoadBoxes();
+        }
+
         #region Refresh functions
         /// <summary>
         /// Refresh the timelines boxes
@@ -506,13 +550,7 @@ namespace GuardianOfTime
                 LNameBox.Items.Clear();
                 if (RaceBox.SelectedIndex == -1)
                 {
-                    foreach (Character val in CharaList)
-                    {
-                        if (!(LNameBox.Items.Contains(val.LastName.Name)))
-                        {
-                            LNameBox.Items.Add(val.LastName.Name);
-                        }
-                    }
+                    //No Race
                 }
                 else
                 {
@@ -1926,5 +1964,337 @@ namespace GuardianOfTime
             RefreshWeapon4();
         }
         #endregion Refresh App Changes
+
+        private void cmdRandom_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LW.Debug("Randomizing.");
+                if (TimelineBox.SelectedIndex == -1) TimelineBox.SelectedIndex = Rnd.Next(0, TimelineBox.Items.Count - 2);//*Originelle is not a good Timeline.
+                if (RaceBox.SelectedIndex == -1) RaceBox.SelectedIndex = Rnd.Next(2, RaceBox.Items.Count - 1);
+                if (ElementBox.SelectedIndex == -1) ElementBox.SelectedIndex = Rnd.Next(0, ElementBox.Items.Count - 1);
+                if (ElementBox2.SelectedIndex == -1)
+                {
+                    if (Rnd.Next(0, 500) == 1) ElementBox2.SelectedIndex = Rnd.Next(0, ElementBox2.Items.Count - 1);
+                }
+                if (PowerBox.SelectedIndex == -1) PowerBox.SelectedIndex = Rnd.Next(0, PowerBox.Items.Count - 1);
+                if (PowerBox2.SelectedIndex == -1)
+                {
+                    if (Rnd.Next(0, 1000) == 1) PowerBox2.SelectedIndex = Rnd.Next(0, PowerBox2.Items.Count - 1);
+                }
+                #region Dates
+                if (BirthDay.Value == 1 && BirthMonth.Value == 1 && BirthYear.Value == 0)
+                {
+                    BirthDay.Value = Rnd.Next((int)BirthDay.Minimum, (int)BirthDay.Maximum);
+                    BirthMonth.Value = Rnd.Next((int)BirthMonth.Minimum, (int)BirthMonth.Maximum);
+                    try
+                    {
+                        BirthYear.Value = Rnd.Next((int)BirthYearMin.Value, (int)BirthYearMax.Value);
+                    }
+                    catch(Exception ex)
+                    {
+                        LW.Error(ex);
+                        BirthYear.Value = 0;
+                        MessageBox.Show("Invalid Min and Max Years.", ">:(");
+                    }
+                }
+                else if(BirthDay.Value == 1 && BirthMonth.Value == 1)
+                {
+                    BirthDay.Value = Rnd.Next((int)BirthDay.Minimum, (int)BirthDay.Maximum);
+                    BirthMonth.Value = Rnd.Next((int)BirthMonth.Minimum, (int)BirthMonth.Maximum);
+                }
+                else if(BirthYear.Value == 0)
+                {
+                    try
+                    {
+                        BirthYear.Value = Rnd.Next((int)BirthYearMin.Value, (int)BirthYearMax.Value);
+                    }
+                    catch (Exception ex)
+                    {
+                        LW.Error(ex);
+                        BirthYear.Value = 0;
+                        MessageBox.Show("Invalid Min and Max Years.", ">:(");
+                    }
+                }
+                #endregion Dates
+                #region Height
+                if (RaceBox.SelectedItem.ToString() == "Dieu élémentaire")
+                {
+                    try
+                    {
+                        if (HeightBox.Value == World.GodMinHeight) HeightBox.Value = Rnd.Next((int)HeightMin.Value, (int)HeightMax.Value);
+                    }
+                    catch (Exception ex)
+                    {
+                        LW.Error(ex);
+                        BirthYear.Value = 0;
+                        MessageBox.Show("Invalid Min and Max Height.", ">:(");
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        if (HeightBox.Value == World.PeopleMinHeight || HeightBox.Value == World.PeopleMaxHeight) HeightBox.Value = Rnd.Next((int)HeightMin.Value, (int)HeightMax.Value);
+                    }
+                    catch (Exception ex)
+                    {
+                        LW.Error(ex);
+                        BirthYear.Value = 0;
+                        MessageBox.Show("Invalid Min and Max Height.", ">:(");
+                    }
+                }
+                #endregion Height
+                if (HairColorBox.SelectedIndex == -1)
+                {
+                    if ((string)HairColorBox.Text == "") HairColorBox.SelectedIndex = Rnd.Next(0, HairColorBox.Items.Count - 1);
+                }
+                if (HairLengthBox.SelectedIndex == -1)
+                {
+                    if ((string)HairLengthBox.Text == "") HairLengthBox.SelectedIndex = Rnd.Next(0, HairLengthBox.Items.Count - 1);
+                }
+                if (EyeColorBox.SelectedIndex == -1)
+                {
+                    if ((string)EyeColorBox.Text == "") EyeColorBox.SelectedIndex = Rnd.Next(0, EyeColorBox.Items.Count - 1);
+                }
+                if (LikeBox1.SelectedIndex == -1) LikeBox1.SelectedIndex = Rnd.Next(0, LikeBox1.Items.Count - 1);
+                if (UnlikeBox1.SelectedIndex == -1) UnlikeBox1.SelectedIndex = Rnd.Next(0, UnlikeBox1.Items.Count - 1);
+                if (LikeBox2.SelectedIndex == -1) LikeBox2.SelectedIndex = Rnd.Next(0, LikeBox2.Items.Count - 1);
+                if (UnlikeBox2.SelectedIndex == -1) UnlikeBox2.SelectedIndex = Rnd.Next(0, UnlikeBox2.Items.Count - 1);
+                if (WeaponBox1.SelectedIndex == -1)
+                {
+                    if (Rnd.Next(0, 30) != 0)
+                    {
+                        Redo:
+                        WeaponBox1.SelectedIndex = Rnd.Next(0, WeaponBox1.Items.Count - 1);
+                        foreach (Weapon value in Weapons)
+                        {
+                            if (value.Name == WeaponBox1.SelectedIndex.ToString())
+                            {
+                                if (value.Special)
+                                {
+                                    goto Redo;
+                                }
+                            }
+                        }
+                        if (Rnd.Next(0, 2) == 0)
+                        {
+                            Redo2:
+                            WeaponBox2.SelectedIndex = Rnd.Next(0, WeaponBox1.Items.Count - 1);
+                            foreach (Weapon value in Weapons)
+                            {
+                                if (value.Name == WeaponBox2.SelectedIndex.ToString())
+                                {
+                                    if (value.Special)
+                                    {
+                                        goto Redo2;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
+
+        private void cmdValidate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LW.Debug("Validating");
+                int t = -1, r = -1, e1 = -1, e2 = -1, p1 = -1, p2 = -1, l1 = -1, l2 = -1, l3 = -1, l4 = -1, l5 = -1,
+                    u1 = -1, u2 = -1, u3 = -1, u4 = -1, u5 = -1, a1 = -1, a2 = -1, a3 = -1, a4 = -1,
+                    w1 = -1, w2 = -1, w3 = -1, w4 = -1, i;
+                //Alternative character
+                if (AltCheckBox.Checked)
+                {
+                    MessageBox.Show("Alternative character unavailable.");
+                }
+                else
+                {
+                    //Timeline
+                    if (TimelineBox.SelectedIndex == -1)
+                    {
+                        MessageBox.Show("Enter a Timeline.");
+                        throw new Exception();
+                    }
+                    else
+                    {
+                        i = 0;
+                        foreach(Timeline value in TLs)
+                        {
+                            if (value.Name == TimelineBox.SelectedItem.ToString()) t = i;
+                            i++;
+                        }
+                    }
+                    //Race
+                    if (RaceBox.SelectedIndex == -1)
+                    {
+                        MessageBox.Show("Enter a Race.");
+                        throw new Exception();
+                    }
+                    else
+                    {
+                        i = 0;
+                        foreach (Race value in Races)
+                        {
+                            if (value.Name == RaceBox.SelectedItem.ToString()) r = i;
+                            i++;
+                        }
+                    }
+                    //Ndf + Fn
+                    if (Races[r].Name == "Dragon")
+                    {
+                        if (FNameBox.SelectedIndex == -1)
+                        {
+                            MessageBox.Show("Select a First Name.");
+                            throw new Exception();
+                        }
+                    }
+                    else
+                    {
+                        if (LNameBox.Text == "" || FNameBox.Text == "")
+                        {
+                            MessageBox.Show("Enter a Last and First Names.");
+                            throw new Exception();
+                        }
+                    }
+                    //Elements
+                    if (ElementBox.SelectedIndex == -1)
+                    {
+                        MessageBox.Show("Select at least 1 element.");
+                        throw new Exception();
+                    }
+                    else
+                    {
+                        i = 0;
+                        foreach (string value in W.Elements)
+                        {
+                            if (value == ElementBox.SelectedItem.ToString()) e1 = i;
+                            if (ElementBox2.SelectedIndex != -1) if (value == ElementBox2.SelectedItem.ToString()) e2 = i;
+                            i++;
+                        }
+                    }
+                    //Powers
+                    if (PowerBox.SelectedIndex == -1)
+                    {
+                        MessageBox.Show("Select at least 1 power.");
+                        throw new Exception();
+                    }
+                    else
+                    {
+                        i = 0;
+                        foreach (Power value in Powers)
+                        {
+                            if (value.Name == PowerBox.SelectedItem.ToString()) p1 = i;
+                            if (PowerBox2.SelectedIndex != -1) if (value.Name == PowerBox2.SelectedItem.ToString()) p2 = i;
+                            i++;
+                        }
+                    }
+                    //Hair and Eyes
+                    if (HairColorBox.Text == "" || HairLengthBox.Text == "" || EyeColorBox.Text == "")
+                    {
+                        MessageBox.Show("Enter Hair and eyes.");
+                        throw new Exception();
+                    }
+                    //Likes and Unlikes
+                    if (LikeBox1.SelectedIndex == -1 || UnlikeBox1.SelectedIndex == -1)
+                    {
+                        MessageBox.Show("Select at least 1 like and unlike.");
+                        throw new Exception();
+                    }
+                    else
+                    {
+                        i = 0;
+                        foreach(Thing value in Things)
+                        {
+                            if (value.Name == LikeBox1.SelectedItem.ToString()) l1 = i;
+                            if (value.Name == UnlikeBox1.SelectedItem.ToString()) u1 = i;
+                            if (LikeBox2.SelectedIndex != -1) if (value.Name == LikeBox2.SelectedItem.ToString()) l2 = i;
+                            if (UnlikeBox2.SelectedIndex != -1) if (value.Name == UnlikeBox2.SelectedItem.ToString()) u2 = i;
+                            if (LikeBox3.SelectedIndex != -1) if (value.Name == LikeBox3.SelectedItem.ToString()) l3 = i;
+                            if (UnlikeBox3.SelectedIndex != -1) if (value.Name == UnlikeBox3.SelectedItem.ToString()) u3 = i;
+                            if (LikeBox4.SelectedIndex != -1) if (value.Name == LikeBox4.SelectedItem.ToString()) l4 = i;
+                            if (UnlikeBox4.SelectedIndex != -1) if (value.Name == UnlikeBox4.SelectedItem.ToString()) u4 = i;
+                            if (LikeBox5.SelectedIndex != -1) if (value.Name == LikeBox5.SelectedItem.ToString()) l5 = i;
+                            if (UnlikeBox5.SelectedIndex != -1) if (value.Name == UnlikeBox5.SelectedItem.ToString()) u5 = i;
+                            i++;
+                        }
+                    }
+                    //Activity
+                    i = 0;
+                    foreach (Activity value in Acts)
+                    {
+                        if (ActBox1.SelectedIndex != -1) if (value.Title == ActBox1.SelectedItem.ToString()) a1 = i;
+                        if (ActBox2.SelectedIndex != -1) if (value.Title == ActBox2.SelectedItem.ToString()) a2 = i;
+                        if (ActBox3.SelectedIndex != -1) if (value.Title == ActBox3.SelectedItem.ToString()) a3 = i;
+                        if (ActBox4.SelectedIndex != -1) if (value.Title == ActBox4.SelectedItem.ToString()) a4 = i;
+                        i++;
+                    }
+                    //Backstory
+                    if (BackstoryBox.Text == "")
+                    {
+                        MessageBox.Show("Enter a backstory.");
+                        throw new Exception();
+                    }
+                    //Weapon
+                    i = 0;
+                    foreach (Weapon value in Weapons)
+                    {
+                        if (WeaponBox1.SelectedIndex != -1) if (value.Name == WeaponBox1.SelectedItem.ToString()) w1 = i;
+                        if (WeaponBox2.SelectedIndex != -1) if (value.Name == WeaponBox2.SelectedItem.ToString()) w2 = i;
+                        if (WeaponBox3.SelectedIndex != -1) if (value.Name == WeaponBox3.SelectedItem.ToString()) w3 = i;
+                        if (WeaponBox4.SelectedIndex != -1) if (value.Name == WeaponBox4.SelectedItem.ToString()) w4 = i;
+                        i++;
+                    }
+                    //Creation of character
+                    Character c;
+                    if (Races[r].Name == "Dragon")
+                    {
+                        c = new Character(new LastName("Dragon", Races[r]), (string)FNameBox.Text, new Hair((string)HairColorBox.Text, (string)HairLengthBox.Text),
+                            (string)EyeColorBox.Text, Races[r], (int)HeightBox.Value, new TimeDate((int)BirthYear.Value, (int)BirthMonth.Value, (int)BirthDay.Value), TLs[t]);
+                    }
+                    else
+                    {
+                        c = new Character(new LastName((string)LNameBox.Text, Races[r]), (string)FNameBox.Text, new Hair((string)HairColorBox.Text, (string)HairLengthBox.Text),
+                            (string)EyeColorBox.Text, Races[r], (int)HeightBox.Value, new TimeDate((int)BirthYear.Value, (int)BirthMonth.Value, (int)BirthDay.Value), TLs[t]);
+                    }
+                    if (e1 != -1) c.Elements.Add(W.Elements[e1]);
+                    if (e2 != -1) c.Elements.Add(W.Elements[e2]);
+                    if (p1 != -1) c.Powers.Add(Powers[p1]);
+                    if (p2 != -1) c.Powers.Add(Powers[p2]);
+                    if (l1 != -1) c.Likes.Add(Things[l1]);
+                    if (l2 != -1) c.Likes.Add(Things[l2]);
+                    if (l3 != -1) c.Likes.Add(Things[l3]);
+                    if (l4 != -1) c.Likes.Add(Things[l4]);
+                    if (l5 != -1) c.Likes.Add(Things[l5]);
+                    if (u1 != -1) c.Unlikes.Add(Things[u1]);
+                    if (u2 != -1) c.Unlikes.Add(Things[u2]);
+                    if (u3 != -1) c.Unlikes.Add(Things[u3]);
+                    if (u4 != -1) c.Unlikes.Add(Things[u4]);
+                    if (u5 != -1) c.Unlikes.Add(Things[u5]);
+                    if (a1 != -1) c.Activities.Add(Acts[a1]);
+                    if (a2 != -1) c.Activities.Add(Acts[a2]);
+                    if (a3 != -1) c.Activities.Add(Acts[a3]);
+                    if (a4 != -1) c.Activities.Add(Acts[a4]);
+                    if (w1 != -1) c.Weapons.Add(Weapons[w1]);
+                    if (w2 != -1) c.Weapons.Add(Weapons[w2]);
+                    if (w3 != -1) c.Weapons.Add(Weapons[w3]);
+                    if (w4 != -1) c.Weapons.Add(Weapons[w4]);
+                    c.Backstory.Add(new BackStory("Unamed", BackstoryBox.Text, TLs[t]));
+                    CharaList.Add(c);
+                    //Reset
+                    Reset();
+                }
+            }
+            catch(Exception ex)
+            {
+                LW.Error(ex);
+            }
+        }
     }
 }
