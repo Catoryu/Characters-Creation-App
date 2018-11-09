@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace GuardianOfTime
 {
     [Serializable]
-    class Character
+    public class Character
     {
         #region attributes
         private LastName lastName;

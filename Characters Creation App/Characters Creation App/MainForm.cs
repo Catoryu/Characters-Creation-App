@@ -42,9 +42,10 @@ namespace GuardianOfTime
             LW.Create(@"C:\logCS");
             try
             {
-                LW.Debug("Initializing MainForm.");
+                LW.Debug("Initializing MainForm...");
                 InitializeComponent();
-                LW.Debug("Initializing World Lists.");
+                LW.Debug("MainForm : OK.");
+                LW.Debug("Initializing World Lists...");
                 #region Timelines
                 TLs.Add(new Timeline("Originelle", new TimeDate(16100, 1, 1)));//2512o, 16100MK
                 TLs.Add(new Timeline("MK-0/MK-2", new TimeDate(15638, 1, 1)));//2050o, 15638MK
@@ -391,6 +392,7 @@ namespace GuardianOfTime
                 Powers.Add(new Power("Immunité aux ténèbres"));
                 Powers.Add(new Power("Inversion des éléments"));
                 #endregion Powers
+                LW.Debug("World Lists : OK.");
             }
             catch (Exception ex)
             {
@@ -399,10 +401,9 @@ namespace GuardianOfTime
 
             try
             {
-                LW.Debug("Loading Boxes.");
+                LW.Debug("Loading Boxes...");
                 //Initial Load
                 LoadBoxes();
-                
             }
             catch(Exception ex)
             {
@@ -465,7 +466,7 @@ namespace GuardianOfTime
         /// </summary>
         private void Reset()
         {
-            LW.Debug("Reseting.");
+            LW.Debug("Reseting...");
             AltCheckBox.Checked = false;
             TimelineBox.SelectedIndex = -1;
             RaceBox.SelectedIndex = -1;
@@ -591,34 +592,37 @@ namespace GuardianOfTime
             {
                 LW.Debug("Refreshing First Names.");
                 FNameBox.Items.Clear();
-                if (RaceBox.SelectedItem.ToString() == Races[0].Name)
+                if (RaceBox.SelectedIndex != -1)
                 {
-                    bool add;
-                    LNameBox.Enabled = false;
-                    FNameBox.DropDownStyle = ComboBoxStyle.DropDownList;
-                    foreach (string value in W.DragonNames)
+                    if (RaceBox.SelectedItem.ToString() == Races[0].Name)
                     {
-                        add = true;
-                        foreach (Character val in CharaList)
+                        bool add;
+                        LNameBox.Enabled = false;
+                        FNameBox.DropDownStyle = ComboBoxStyle.DropDownList;
+                        foreach (string value in W.DragonNames)
                         {
-                            if (val.Race.Name == Races[0].Name)
+                            add = true;
+                            foreach (Character val in CharaList)
                             {
-                                if (val.FirstName == value)
+                                if (val.Race.Name == Races[0].Name)
                                 {
-                                    add = false;
+                                    if (val.FirstName == value)
+                                    {
+                                        add = false;
+                                    }
                                 }
                             }
-                        }
-                        if (add)
-                        {
-                            FNameBox.Items.Add(value);
+                            if (add)
+                            {
+                                FNameBox.Items.Add(value);
+                            }
                         }
                     }
-                }
-                else
-                {
-                    LNameBox.Enabled = true;
-                    FNameBox.DropDownStyle = ComboBoxStyle.DropDown;
+                    else
+                    {
+                        LNameBox.Enabled = true;
+                        FNameBox.DropDownStyle = ComboBoxStyle.DropDown;
+                    }
                 }
                 LW.Debug("First Names : OK.");
             }
@@ -765,7 +769,7 @@ namespace GuardianOfTime
                             add = false;
                         }
                     }
-                    if (PowerBox.SelectedItem.ToString() == value.Name) add = false;
+                    if (PowerBox.SelectedIndex != -1) if (PowerBox.SelectedItem.ToString() == value.Name) add = false;
                     if (add)
                     {
                         PowerBox2.Items.Add(value.Name);
@@ -828,24 +832,27 @@ namespace GuardianOfTime
             try
             {
                 LW.Debug("Refreshing Height Limits.");
-                switch (RaceBox.SelectedItem.ToString())
+                if (RaceBox.SelectedIndex != -1)
                 {
-                    case "Dieu élémentaire":
-                        HeightMin.Minimum = World.GodMinHeight;
-                        HeightMax.Minimum = World.GodMinHeight;
-                        HeightBox.Minimum = World.GodMinHeight;
-                        HeightMin.Maximum = World.GodMaxHeight;
-                        HeightMax.Maximum = World.GodMaxHeight;
-                        HeightBox.Maximum = World.GodMaxHeight;
-                        break;
-                    default:
-                        HeightMin.Minimum = World.PeopleMinHeight;
-                        HeightMax.Minimum = World.PeopleMinHeight;
-                        HeightBox.Minimum = World.PeopleMinHeight;
-                        HeightMin.Maximum = World.PeopleMaxHeight;
-                        HeightMax.Maximum = World.PeopleMaxHeight;
-                        HeightBox.Maximum = World.PeopleMaxHeight;
-                        break;
+                    switch (RaceBox.SelectedItem.ToString())
+                    {
+                        case "Dieu élémentaire":
+                            HeightMin.Minimum = World.GodMinHeight;
+                            HeightMax.Minimum = World.GodMinHeight;
+                            HeightBox.Minimum = World.GodMinHeight;
+                            HeightMin.Maximum = World.GodMaxHeight;
+                            HeightMax.Maximum = World.GodMaxHeight;
+                            HeightBox.Maximum = World.GodMaxHeight;
+                            break;
+                        default:
+                            HeightMin.Minimum = World.PeopleMinHeight;
+                            HeightMax.Minimum = World.PeopleMinHeight;
+                            HeightBox.Minimum = World.PeopleMinHeight;
+                            HeightMin.Maximum = World.PeopleMaxHeight;
+                            HeightMax.Maximum = World.PeopleMaxHeight;
+                            HeightBox.Maximum = World.PeopleMaxHeight;
+                            break;
+                    }
                 }
                 LW.Debug("Height Limits : OK.");
             }
@@ -957,10 +964,6 @@ namespace GuardianOfTime
                     if (UnlikeBox3.SelectedIndex != -1) if (UnlikeBox3.SelectedItem.ToString() == value.Name) add = false;
                     if (UnlikeBox4.SelectedIndex != -1) if (UnlikeBox4.SelectedItem.ToString() == value.Name) add = false;
                     if (UnlikeBox5.SelectedIndex != -1) if (UnlikeBox5.SelectedItem.ToString() == value.Name) add = false;
-                    if (LikeBox2.SelectedIndex != -1) if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
-                    if (LikeBox3.SelectedIndex != -1) if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
-                    if (LikeBox4.SelectedIndex != -1) if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
-                    if (LikeBox5.SelectedIndex != -1) if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
                     if (add)
                     {
                         LikeBox1.Items.Add(value.Name);
@@ -987,12 +990,12 @@ namespace GuardianOfTime
                 foreach (Thing value in Things)
                 {
                     add = true;
-                    if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
-                    if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox1.SelectedIndex != -1) if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
                     if (UnlikeBox2.SelectedIndex != -1) if (UnlikeBox2.SelectedItem.ToString() == value.Name) add = false;
                     if (UnlikeBox3.SelectedIndex != -1) if (UnlikeBox3.SelectedItem.ToString() == value.Name) add = false;
                     if (UnlikeBox4.SelectedIndex != -1) if (UnlikeBox4.SelectedItem.ToString() == value.Name) add = false;
                     if (UnlikeBox5.SelectedIndex != -1) if (UnlikeBox5.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox1.SelectedIndex != -1) if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
                     if (add)
                     {
                         LikeBox2.Items.Add(value.Name);
@@ -1019,12 +1022,13 @@ namespace GuardianOfTime
                 foreach (Thing value in Things)
                 {
                     add = true;
-                    if (LikeBox1.SelectedItem.ToString() == value.Name || LikeBox2.SelectedItem.ToString() == value.Name) add = false;
-                    if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
-                    if (UnlikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox1.SelectedIndex != -1) if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox2.SelectedIndex != -1) if (UnlikeBox2.SelectedItem.ToString() == value.Name) add = false;
                     if (UnlikeBox3.SelectedIndex != -1) if (UnlikeBox3.SelectedItem.ToString() == value.Name) add = false;
                     if (UnlikeBox4.SelectedIndex != -1) if (UnlikeBox4.SelectedItem.ToString() == value.Name) add = false;
                     if (UnlikeBox5.SelectedIndex != -1) if (UnlikeBox5.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox1.SelectedIndex != -1) if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox2.SelectedIndex != -1) if (LikeBox2.SelectedItem.ToString() == value.Name) add = false;
                     if (add)
                     {
                         LikeBox3.Items.Add(value.Name);
@@ -1051,12 +1055,14 @@ namespace GuardianOfTime
                 foreach (Thing value in Things)
                 {
                     add = true;
-                    if (LikeBox1.SelectedItem.ToString() == value.Name || LikeBox2.SelectedItem.ToString() == value.Name || LikeBox3.SelectedItem.ToString() == value.Name) add = false;
-                    if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
-                    if (UnlikeBox2.SelectedItem.ToString() == value.Name) add = false;
-                    if (UnlikeBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox1.SelectedIndex != -1) if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox2.SelectedIndex != -1) if (UnlikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox3.SelectedIndex != -1) if (UnlikeBox3.SelectedItem.ToString() == value.Name) add = false;
                     if (UnlikeBox4.SelectedIndex != -1) if (UnlikeBox4.SelectedItem.ToString() == value.Name) add = false;
                     if (UnlikeBox5.SelectedIndex != -1) if (UnlikeBox5.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox1.SelectedIndex != -1) if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox2.SelectedIndex != -1) if (LikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox3.SelectedIndex != -1) if (LikeBox3.SelectedItem.ToString() == value.Name) add = false;
                     if (add)
                     {
                         LikeBox4.Items.Add(value.Name);
@@ -1083,13 +1089,15 @@ namespace GuardianOfTime
                 foreach (Thing value in Things)
                 {
                     add = true;
-                    if (LikeBox1.SelectedItem.ToString() == value.Name || LikeBox2.SelectedItem.ToString() == value.Name || LikeBox3.SelectedItem.ToString() == value.Name || 
-                        LikeBox4.SelectedItem.ToString() == value.Name) add = false;
-                    if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
-                    if (UnlikeBox2.SelectedItem.ToString() == value.Name) add = false;
-                    if (UnlikeBox3.SelectedItem.ToString() == value.Name) add = false;
-                    if (UnlikeBox4.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox1.SelectedIndex != -1) if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox2.SelectedIndex != -1) if (UnlikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox3.SelectedIndex != -1) if (UnlikeBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox4.SelectedIndex != -1) if (UnlikeBox4.SelectedItem.ToString() == value.Name) add = false;
                     if (UnlikeBox5.SelectedIndex != -1) if (UnlikeBox5.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox1.SelectedIndex != -1) if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox2.SelectedIndex != -1) if (LikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox3.SelectedIndex != -1) if (LikeBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox4.SelectedIndex != -1) if (LikeBox4.SelectedItem.ToString() == value.Name) add = false;
                     if (add)
                     {
                         LikeBox5.Items.Add(value.Name);
@@ -1137,15 +1145,11 @@ namespace GuardianOfTime
                 foreach (Thing value in Things)
                 {
                     add = true;
-                    if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox1.SelectedIndex != -1) if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
                     if (LikeBox2.SelectedIndex != -1) if (LikeBox2.SelectedItem.ToString() == value.Name) add = false;
                     if (LikeBox3.SelectedIndex != -1) if (LikeBox3.SelectedItem.ToString() == value.Name) add = false;
                     if (LikeBox4.SelectedIndex != -1) if (LikeBox4.SelectedItem.ToString() == value.Name) add = false;
                     if (LikeBox5.SelectedIndex != -1) if (LikeBox5.SelectedItem.ToString() == value.Name) add = false;
-                    if (UnlikeBox2.SelectedIndex != -1) if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
-                    if (UnlikeBox3.SelectedIndex != -1) if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
-                    if (UnlikeBox4.SelectedIndex != -1) if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
-                    if (UnlikeBox5.SelectedIndex != -1) if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
                     if (add)
                     {
                         UnlikeBox1.Items.Add(value.Name);
@@ -1172,9 +1176,9 @@ namespace GuardianOfTime
                 foreach (Thing value in Things)
                 {
                     add = true;
-                    if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
-                    if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
-                    if (LikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox1.SelectedIndex != -1) if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox1.SelectedIndex != -1) if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox2.SelectedIndex != -1) if (LikeBox2.SelectedItem.ToString() == value.Name) add = false;
                     if (LikeBox3.SelectedIndex != -1) if (LikeBox3.SelectedItem.ToString() == value.Name) add = false;
                     if (LikeBox4.SelectedIndex != -1) if (LikeBox4.SelectedItem.ToString() == value.Name) add = false;
                     if (LikeBox5.SelectedIndex != -1) if (LikeBox5.SelectedItem.ToString() == value.Name) add = false;
@@ -1204,10 +1208,11 @@ namespace GuardianOfTime
                 foreach (Thing value in Things)
                 {
                     add = true;
-                    if (UnlikeBox1.SelectedItem.ToString() == value.Name || UnlikeBox2.SelectedItem.ToString() == value.Name) add = false;
-                    if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
-                    if (LikeBox2.SelectedItem.ToString() == value.Name) add = false;
-                    if (LikeBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox1.SelectedIndex != -1) if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox2.SelectedIndex != -1) if (UnlikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox1.SelectedIndex != -1) if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox2.SelectedIndex != -1) if (LikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox3.SelectedIndex != -1) if (LikeBox3.SelectedItem.ToString() == value.Name) add = false;
                     if (LikeBox4.SelectedIndex != -1) if (LikeBox4.SelectedItem.ToString() == value.Name) add = false;
                     if (LikeBox5.SelectedIndex != -1) if (LikeBox5.SelectedItem.ToString() == value.Name) add = false;
                     if (add)
@@ -1236,11 +1241,13 @@ namespace GuardianOfTime
                 foreach (Thing value in Things)
                 {
                     add = true;
-                    if (UnlikeBox1.SelectedItem.ToString() == value.Name || UnlikeBox2.SelectedItem.ToString() == value.Name || UnlikeBox3.SelectedItem.ToString() == value.Name) add = false;
-                    if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
-                    if (LikeBox2.SelectedItem.ToString() == value.Name) add = false;
-                    if (LikeBox3.SelectedItem.ToString() == value.Name) add = false;
-                    if (LikeBox4.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox1.SelectedIndex != -1) if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox2.SelectedIndex != -1) if (UnlikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox3.SelectedIndex != -1) if (UnlikeBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox1.SelectedIndex != -1) if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox2.SelectedIndex != -1) if (LikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox3.SelectedIndex != -1) if (LikeBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox4.SelectedIndex != -1) if (LikeBox4.SelectedItem.ToString() == value.Name) add = false;
                     if (LikeBox5.SelectedIndex != -1) if (LikeBox5.SelectedItem.ToString() == value.Name) add = false;
                     if (add)
                     {
@@ -1268,13 +1275,15 @@ namespace GuardianOfTime
                 foreach (Thing value in Things)
                 {
                     add = true;
-                    if (UnlikeBox1.SelectedItem.ToString() == value.Name || UnlikeBox2.SelectedItem.ToString() == value.Name || UnlikeBox3.SelectedItem.ToString() == value.Name ||
-                        UnlikeBox4.SelectedItem.ToString() == value.Name) add = false;
-                    if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
-                    if (LikeBox2.SelectedItem.ToString() == value.Name) add = false;
-                    if (LikeBox3.SelectedItem.ToString() == value.Name) add = false;
-                    if (LikeBox4.SelectedItem.ToString() == value.Name) add = false;
-                    if (LikeBox5.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox1.SelectedIndex != -1) if (UnlikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox2.SelectedIndex != -1) if (UnlikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox3.SelectedIndex != -1) if (UnlikeBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (UnlikeBox4.SelectedIndex != -1) if (UnlikeBox4.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox1.SelectedIndex != -1) if (LikeBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox2.SelectedIndex != -1) if (LikeBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox3.SelectedIndex != -1) if (LikeBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox4.SelectedIndex != -1) if (LikeBox4.SelectedItem.ToString() == value.Name) add = false;
+                    if (LikeBox5.SelectedIndex != -1) if (LikeBox5.SelectedItem.ToString() == value.Name) add = false;
                     if (add)
                     {
                         UnlikeBox5.Items.Add(value.Name);
@@ -1321,19 +1330,22 @@ namespace GuardianOfTime
                 foreach (Activity value in Acts)
                 {
                     add = true;
-                    if (value.Timeline.Name == TimelineBox.SelectedItem.ToString())
+                    if (TimelineBox.SelectedIndex != -1)
                     {
-                        foreach (Character val in CharaList)
+                        if (value.Timeline.Name == TimelineBox.SelectedItem.ToString())
                         {
-                            if (val.Activities.Contains(value))
+                            foreach (Character val in CharaList)
                             {
-                                add = false;
+                                if (val.Activities.Contains(value))
+                                {
+                                    add = false;
+                                }
                             }
                         }
-                    }
-                    else
-                    {
-                        add = false;
+                        else
+                        {
+                            add = false;
+                        }
                     }
                     if (add)
                     {
@@ -1361,21 +1373,24 @@ namespace GuardianOfTime
                 foreach (Activity value in Acts)
                 {
                     add = true;
-                    if (value.Timeline.Name == TimelineBox.SelectedItem.ToString())
+                    if (TimelineBox.SelectedIndex != -1)
                     {
-                        foreach (Character val in CharaList)
+                        if (value.Timeline.Name == TimelineBox.SelectedItem.ToString())
                         {
-                            if (val.Activities.Contains(value))
+                            foreach (Character val in CharaList)
                             {
-                                add = false;
+                                if (val.Activities.Contains(value))
+                                {
+                                    add = false;
+                                }
                             }
                         }
+                        else
+                        {
+                            add = false;
+                        }
                     }
-                    else
-                    {
-                        add = false;
-                    }
-                    if (ActBox1.SelectedItem.ToString() == value.Title) add = false;
+                    if (ActBox1.SelectedIndex != -1) if (ActBox1.SelectedItem.ToString() == value.Title) add = false;
                     if (add)
                     {
                         ActBox2.Items.Add(value.Title);
@@ -1402,21 +1417,25 @@ namespace GuardianOfTime
                 foreach (Activity value in Acts)
                 {
                     add = true;
-                    if (value.Timeline.Name == TimelineBox.SelectedItem.ToString())
+                    if (TimelineBox.SelectedIndex != -1)
                     {
-                        foreach (Character val in CharaList)
+                        if (value.Timeline.Name == TimelineBox.SelectedItem.ToString())
                         {
-                            if (val.Activities.Contains(value))
+                            foreach (Character val in CharaList)
                             {
-                                add = false;
+                                if (val.Activities.Contains(value))
+                                {
+                                    add = false;
+                                }
                             }
                         }
+                        else
+                        {
+                            add = false;
+                        }
                     }
-                    else
-                    {
-                        add = false;
-                    }
-                    if (ActBox1.SelectedItem.ToString() == value.Title || ActBox2.SelectedItem.ToString() == value.Title) add = false;
+                    if (ActBox1.SelectedIndex != -1) if (ActBox1.SelectedItem.ToString() == value.Title) add = false;
+                    if (ActBox2.SelectedIndex != -1) if (ActBox2.SelectedItem.ToString() == value.Title) add = false;
                     if (add)
                     {
                         ActBox3.Items.Add(value.Title);
@@ -1443,21 +1462,26 @@ namespace GuardianOfTime
                 foreach (Activity value in Acts)
                 {
                     add = true;
-                    if (value.Timeline.Name == TimelineBox.SelectedItem.ToString())
+                    if (TimelineBox.SelectedIndex != -1)
                     {
-                        foreach (Character val in CharaList)
+                        if (value.Timeline.Name == TimelineBox.SelectedItem.ToString())
                         {
-                            if (val.Activities.Contains(value))
+                            foreach (Character val in CharaList)
                             {
-                                add = false;
+                                if (val.Activities.Contains(value))
+                                {
+                                    add = false;
+                                }
                             }
                         }
+                        else
+                        {
+                            add = false;
+                        }
                     }
-                    else
-                    {
-                        add = false;
-                    }
-                    if (ActBox1.SelectedItem.ToString() == value.Title || ActBox2.SelectedItem.ToString() == value.Title || ActBox3.SelectedItem.ToString() == value.Title) add = false;
+                    if (ActBox1.SelectedIndex != -1) if (ActBox1.SelectedItem.ToString() == value.Title) add = false;
+                    if (ActBox2.SelectedIndex != -1) if (ActBox2.SelectedItem.ToString() == value.Title) add = false;
+                    if (ActBox3.SelectedIndex != -1) if (ActBox3.SelectedItem.ToString() == value.Title) add = false;
                     if (add)
                     {
                         ActBox4.Items.Add(value.Title);
@@ -1582,7 +1606,7 @@ namespace GuardianOfTime
                             }
                         }
                     }
-                    if (WeaponBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (WeaponBox1.SelectedIndex != -1) if (WeaponBox1.SelectedItem.ToString() == value.Name) add = false;
                     if (add)
                     {
                         WeaponBox2.Items.Add(value.Name);
@@ -1630,8 +1654,8 @@ namespace GuardianOfTime
                             }
                         }
                     }
-                    if (WeaponBox1.SelectedItem.ToString() == value.Name) add = false;
-                    if (WeaponBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (WeaponBox1.SelectedIndex != -1) if (WeaponBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (WeaponBox2.SelectedIndex != -1) if (WeaponBox2.SelectedItem.ToString() == value.Name) add = false;
                     if (add)
                     {
                         WeaponBox3.Items.Add(value.Name);
@@ -1679,9 +1703,9 @@ namespace GuardianOfTime
                             }
                         }
                     }
-                    if (WeaponBox1.SelectedItem.ToString() == value.Name) add = false;
-                    if (WeaponBox2.SelectedItem.ToString() == value.Name) add = false;
-                    if (WeaponBox3.SelectedItem.ToString() == value.Name) add = false;
+                    if (WeaponBox1.SelectedIndex != -1) if (WeaponBox1.SelectedItem.ToString() == value.Name) add = false;
+                    if (WeaponBox2.SelectedIndex != -1) if (WeaponBox2.SelectedItem.ToString() == value.Name) add = false;
+                    if (WeaponBox3.SelectedIndex != -1) if (WeaponBox3.SelectedItem.ToString() == value.Name) add = false;
                     if (add)
                     {
                         WeaponBox4.Items.Add(value.Name);
@@ -1983,7 +2007,7 @@ namespace GuardianOfTime
         {
             try
             {
-                LW.Debug("Randomizing.");
+                LW.Debug("Randomizing...");
                 if (TimelineBox.SelectedIndex == -1) TimelineBox.SelectedIndex = Rnd.Next(0, TimelineBox.Items.Count - 2);//*Originelle is not a good Timeline.
                 if (RaceBox.SelectedIndex == -1) RaceBox.SelectedIndex = Rnd.Next(2, RaceBox.Items.Count - 1);
                 if (ElementBox.SelectedIndex == -1) ElementBox.SelectedIndex = Rnd.Next(0, ElementBox.Items.Count - 1);
@@ -2124,7 +2148,7 @@ namespace GuardianOfTime
         {
             try
             {
-                LW.Debug("Validating.");
+                LW.Debug("Validating...");
                 int t = -1, r = -1, e1 = -1, e2 = -1, p1 = -1, p2 = -1, l1 = -1, l2 = -1, l3 = -1, l4 = -1, l5 = -1,
                     u1 = -1, u2 = -1, u3 = -1, u4 = -1, u5 = -1, a1 = -1, a2 = -1, a3 = -1, a4 = -1,
                     w1 = -1, w2 = -1, w3 = -1, w4 = -1, i;
@@ -2318,7 +2342,16 @@ namespace GuardianOfTime
 
         private void cmdCharaList_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                LW.Debug("Showing Characters List...");
+                ListForm LF = new ListForm(CharaList, LW);
+                LF.Show();
+            }
+            catch(Exception ex)
+            {
+                LW.Error(ex);
+            }
         }
 
         /// <summary>
@@ -2331,8 +2364,18 @@ namespace GuardianOfTime
             try
             {
                 LW.Debug("Saving...");
-                SB.exportObject(CharaList, "CharaList.bin");
-                Reset();
+                SaveFileDialog SFD = new SaveFileDialog();
+                SFD.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
+                SFD.RestoreDirectory = true;
+                SFD.Title = "Save CharaList as...";
+                SFD.DefaultExt = "bin";
+                SFD.Filter = "bin files (*.bin)|*.bin";
+                SFD.FilterIndex = 0;
+                if (SFD.ShowDialog() == DialogResult.OK)
+                {
+                    SB.exportObject(CharaList, SFD.FileName);
+                    Reset();
+                }
             }
             catch(Exception ex)
             {
@@ -2350,8 +2393,18 @@ namespace GuardianOfTime
             try
             {
                 LW.Debug("Loading...");
-                CharaList = (List<Character>)SB.importObject("CharaList.bin");
-                Reset();
+                OpenFileDialog OFD = new OpenFileDialog();
+                OFD.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
+                OFD.RestoreDirectory = true;
+                OFD.Title = "Open CharaList";
+                OFD.DefaultExt = "bin";
+                OFD.Filter = "bin files (*.bin)|*.bin";
+                OFD.FilterIndex = 0;
+                if (OFD.ShowDialog() == DialogResult.OK)
+                {
+                    CharaList = (List<Character>)SB.importObject(OFD.FileName);
+                    Reset();
+                }
             }
             catch (Exception ex)
             {

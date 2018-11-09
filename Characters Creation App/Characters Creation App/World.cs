@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GuardianOfTime
 {
-    class World
+    public class World
     {
         public static int PeopleMinHeight = 100;
         public static int PeopleMaxHeight = 221;
@@ -68,7 +68,7 @@ namespace GuardianOfTime
     }
 
     [Serializable]
-    struct LastName
+    public struct LastName
     {
         public string Name;
         public Race Race;
@@ -83,7 +83,7 @@ namespace GuardianOfTime
     }
 
     [Serializable]
-    struct Race
+    public struct Race
     {
         public string Name;
 
@@ -94,7 +94,7 @@ namespace GuardianOfTime
     }
 
     [Serializable]
-    struct Hair
+    public struct Hair
     {
         public string Color;
         public string Length;
@@ -107,7 +107,7 @@ namespace GuardianOfTime
     }
 
     [Serializable]
-    struct Timeline
+    public struct Timeline
     {
         public string Name;
         public TimeDate MainDate;
@@ -121,7 +121,7 @@ namespace GuardianOfTime
     }
 
     [Serializable]
-    struct Thing
+    public struct Thing
     {
         public string Name;
 
@@ -132,7 +132,7 @@ namespace GuardianOfTime
     }
 
     [Serializable]
-    struct Power
+    public struct Power
     {
         public string Name;
 
@@ -144,7 +144,7 @@ namespace GuardianOfTime
     }
 
     [Serializable]
-    struct Activity
+    public struct Activity
     {
         public string Title;
         public Timeline Timeline;
@@ -157,7 +157,7 @@ namespace GuardianOfTime
     }
 
     [Serializable]
-    struct BackStory
+    public struct BackStory
     {
         public string Title;
         public string Story;
@@ -172,7 +172,7 @@ namespace GuardianOfTime
     }
 
     [Serializable]
-    struct Weapon
+    public struct Weapon
     {
         public string Name;
         public string Element;
@@ -201,7 +201,7 @@ namespace GuardianOfTime
     }
 
     [Serializable]
-    class TimeDate
+    public class TimeDate
     {
         private int day;
         private int month;
