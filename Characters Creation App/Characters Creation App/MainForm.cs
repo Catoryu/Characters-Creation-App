@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Logs;//LogWriter by Catoryu
-using Imports;//FileImporter by Catoryu
+using CtyLib.Logs;//LogWriter by Catoryu
+using CtyLib.Imports;//FileImporter by Catoryu
 
 namespace GuardianOfTime
 {
@@ -180,14 +180,14 @@ namespace GuardianOfTime
                 Weapons.Add(new Weapon("Spectre", true));
                 Weapons.Add(new Weapon("Hokai", true));
                 //Elemental Weapons
-                Weapons.Add(new Weapon("Ilamas", true, "Feu"));
-                Weapons.Add(new Weapon("Frost Gale", true, "Glace"));
-                Weapons.Add(new Weapon("Sruth", true, "Eau"));
-                Weapons.Add(new Weapon("Pane", true, "Terre"));
-                Weapons.Add(new Weapon("Fengbao", true, "Vent"));
-                Weapons.Add(new Weapon("Tsukuyomi", true, "Foudre"));
-                Weapons.Add(new Weapon("Solis", true, "Lumière"));
-                Weapons.Add(new Weapon("Aloka", true, "Darkness"));
+                Weapons.Add(new Weapon("Ilamas", true, W.Elements[0]));
+                Weapons.Add(new Weapon("Frost Gale", true, W.Elements[1]));
+                Weapons.Add(new Weapon("Sruth", true, W.Elements[2]));
+                Weapons.Add(new Weapon("Pane", true, W.Elements[3]));
+                Weapons.Add(new Weapon("Fengbao", true, W.Elements[4]));
+                Weapons.Add(new Weapon("Tsukuyomi", true, W.Elements[5]));
+                Weapons.Add(new Weapon("Solis", true, W.Elements[6]));
+                Weapons.Add(new Weapon("Aloka", true, W.Elements[7]));
                 #endregion Weapons
                 #region Races
                 Races.Add(new Race("Dragon"));
