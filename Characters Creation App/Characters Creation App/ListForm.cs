@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Logs;
+using CtyLib.Logs;
 
 namespace GuardianOfTime
 {
@@ -15,7 +15,7 @@ namespace GuardianOfTime
     {
         //Declaring the list
         private List<Character> Characters;
-        private log Logs;
+        private LogWriter Logs;
         private List<string> ListChoices;
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace GuardianOfTime
         /// </summary>
         /// <param name="ListOfCharacters">List of all characters</param>
         /// <param name="Logs">Log Writer</param>
-        public ListForm(List<Character> ListOfCharacters, log Logs)
+        public ListForm(List<Character> ListOfCharacters, LogWriter Logs)
         {
             try
             {

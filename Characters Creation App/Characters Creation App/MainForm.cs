@@ -1,22 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CtyLib.Logs;//LogWriter by Catoryu
-using CtyLib.Imports;//FileImporter by Catoryu
+using CtyLib.Files;//FileImporter by Catoryu
 
 namespace GuardianOfTime
 {
     public partial class MainForm : Form
     {
         //LogWriter
-        private log LW = new log();
-        private serializeBIN SB = new serializeBIN();
+        private LogWriter LW = new LogWriter();
+        private BinarySerializer SB = new BinarySerializer();
 
         //Initializing the world
         private World W = new World();

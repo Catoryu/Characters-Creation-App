@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Catoryu%27s Library">
+      <HintPath>..\..\..\..\..\CtyLib\Catoryu's Library\bin\Debug\net461\Catoryu's Library.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -89,16 +92,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\FileImporter\Importer.csproj">
-      <Project>{4965c5d4-6899-4a46-acc4-b0c2dfcbb5bf}</Project>
-      <Name>Importer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\LogWriter\LogWriter.csproj">
-      <Project>{74176c3b-374a-4eca-8920-866e8afd4dea}</Project>
-      <Name>LogWriter</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
