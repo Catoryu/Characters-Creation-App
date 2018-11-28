@@ -1,6 +1,3 @@
-[submodule "FileImporter"]
-	path = FileImporter
-	url = git@github.com:Catoryu/FileImporter.git
 [submodule "LogWriter"]
 	path = LogWriter
 	url = git@github.com:Catoryu/LogWriter.git
